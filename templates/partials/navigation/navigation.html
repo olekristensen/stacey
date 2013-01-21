@@ -1,8 +1,46 @@
-<ul id="navigation" class="col two">
-  {% for child in page.root %}
-    <li>
-      <a href="{{ child.url }}">{{ child.title }}</a>
-      {% include 'partials/navigation/children.html' with { 'page' : child } %}
-    </li>
+<!--[if lt IE 7]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+
+<!-- NAVBAR
+================================================== -->
+<div class="navbar-wrapper">
+  <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+  <div class="container">
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+            <a class="brand" href="{{ page.root_path }}">{{ page.name }} <span>is a software artist</span></a>
+			<div class="nav-collapse collapse">
+    <ul class="nav">
+{% for child in page.root %}
+	{% if child.children %}
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ child.title }} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+			{% for grandchild in child.children %}
+				<li><a href="{{ grandchild.url }}"><small class="muted">{{ grandchild.date | date("Y") }}</small> &nbsp;{{ grandchild.title }}</a></li>
+            {% endfor %}
+			</ul>
+		</li>
+	{% else %}
+		<li{% if child.is_current %} class="active"{% endif %}>
+			<a href="{{ child.url }}">{{ child.slug }}</a>
+	    </li>
+	{% endif %}
   {% endfor %}
-</ul>
+    </ul>
+        </div><!--/.nav-collapse -->
+      </div><!-- /.navbar-inner -->
+    </div><!-- /.navbar -->
+
+  </div> <!-- /.container -->
+</div><!-- /.navbar-wrapper -->
