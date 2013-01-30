@@ -1,4 +1,57 @@
-bypass_cache: true
-title: contact
-content: |
-  I can be contacted at: <ole@kristensen.name>.
+title: Contact
+lead: |
+  <p class="muted">Caveat: I am usually booked at least one year ahead for durations longer than a weekend.<br /> I am not interested in solving your technical issues without having artistic responsibilities.</p>
+content: | 
+ <div class="page-header">
+ <h1>Contact <small>feel free to drop me a line</small></h1>
+ </div>
+ 
+ <div class="row">
+  <div class="span8">
+   <dl class="dl-horizontal">
+   <dt>Address</dt>
+   <dd><address>
+      Ole Kristensen<br>
+      Slangerupgade 12, 2 th<br>
+      2200 København N<br>
+      Denmark
+    </address>
+   </dd>
+   <dt>Phone</dt>
+   <dd>
+    <address>
+    +45 6083 4679
+    </address>
+   </dd>
+   <dt>E-mail</dt>
+   <dd><address>
+    <a href="mailto:ole@kristensen.name">ole@kristensen.name</a>
+    </address>
+   </dd>
+   </dl>
+  </div>
+  <div class="span4">
+   <blockquote>Work inquiries: <small>For durations longer than a weekend usually I am booked at least one year ahead.</small>
+   <small>I do not participate in projects without assuming some degree of the artistic responsibility.</small></blockquote>
+  </div>
+ </div>
+ <hr />
+ <dl class="dl-horizontal">
+    <dt>Social Networks</dt>
+    <dd>
+    <a href="http://www.facebook.com/olesaustrupkristensen">Facebook</a><br />
+    <a href="http://twitter.com/olefab">Twitter</a><br />
+    <a href="http://www.linkedin.com/in/olefab">LinkedIn</a>
+    </dd>
+ </dl>
+ <hr />
+ <dl class="dl-horizontal">
+    <dt>Affiliations</dt>
+    <dd>
+    <a href="http://www.itu.dk/">Intermedia Lab at IT University of Copenhagen</a><br />
+    <a href="http://www.illutron.dk/">Illutron</a><br />
+    <a href="http://www.recoil-performance.org">Recoil Performance Group</a><br />
+    <a href="http://www.in-transit.org">IN-TRANSIT</a><br />
+    </dd>
+ </dl>
+ 

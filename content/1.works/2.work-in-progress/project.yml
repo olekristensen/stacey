@@ -1,10 +1,11 @@
 title: Work in Progress
 tags: Installation, Arduino, Electronics, Generative, Drawing, Featured
 partners: 
+materials: Plotter, arduino, electronics, bespoke firmware
 client: 
 date: April 2008
 lead: |
-  Take an old plotter, add an Arduino and a bit of electronics. Write some code, and it creates beautiful drawings. It even tries to sell them. 
+  Generative plotter drawings. 
 content: |
   Reviving an old Roland plotter, i programmed it to doodle in processing. It took a few months, but it eventually ended up doodling the same way I do myself during long sedentary phone conversations.
   It has since been updated to run from an embedded arduino chip.

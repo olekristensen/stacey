@@ -14,25 +14,24 @@
 </style>
 
 	</head>
-    <body>
 
       	{% include 'partials/navigation/navigation.html' %}
 
     	<!-- Carousel
 	    ================================================== -->
-	    <div id="myCarousel" class="carousel slide">
+	    <div id="myCarousel" class="carousel slide carousel-frontpage">
 	      <div class="carousel-inner">
 		{% for child in page.root %}
 			{% if child.children %}
 	    		{% for child in child.children %}
 		  			{% if "Featured" in child.tags %}
 				        <div class="item {% if loop.first %}active{% endif %}">
-				          <img src="{{ child.thumb.url }}" alt="{% if child.thumb.description %} {{ child.thumb.description }} {% endif %}">
+				          <img src="{{ resize_path( child.thumb.url, '1200', '', '', 80) }}" alt="{% if child.thumb.description %} {{ child.thumb.description }} {% endif %}" class="vertical-center">
 				          <div class="container">
 				            <div class="carousel-caption">
 				              <h1>{{ child.title }}</h1>
 				              <p class="lead">{{ child.date | date("Y") }}</p>
-							  <p class="lead hidden-phone">{{ child.lead | striptags }}</p>
+							  <p class="lead hidden-phone">{{ child.materials | striptags }} &mdash;&nbsp;{{ child.lead | striptags }}</p>
 			              	  <a class="btn" href="{{ child.url }}">See the photos{% if child.html %} and videos{% endif %} &raquo;</a> 
 				            </div>
 				          </div>

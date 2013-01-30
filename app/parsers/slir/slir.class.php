@@ -347,6 +347,7 @@ class SLIR
 	 */
 	private function getConfig()
 	{
+
 		if (file_exists(self::configFilename()))
 		{
 			require self::configFilename();

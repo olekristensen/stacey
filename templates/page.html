@@ -18,19 +18,50 @@
     <body>
 
       	{% include 'partials/navigation/navigation.html' %}
+	    <div class="container">
+    
+			{%if page.more %}
 
-	    <div class="container marketing">
-
-	      <div class="featurette">
-	        <img class="featurette-image pull-right" src="{{ page.thumb }}">
-	        <h2 class="featurette-heading">{{ page.title }} <span class="muted">{{ page.subtitle }}</span></h2>
-	        {{ page.lead }}
-	      </div>
-          {% include 'partials/assets/images.html' %}
-	      {{ page.content }}
-          {% include 'partials/assets/pdfs.html' %}
-
-	      <hr class="featurette-divider">
+			<div class="accordion" id="accordion">
+			  <div class="accordion-group" style="border:none;">
+			    <div id="collapseOne" class="collapse in" style="border:none;">
+			      <div class="accordion-inner" style="border:none;padding:0;margin:0;">
+					<div class="featurette" style="margin-bottom:80px;">
+						{% for image in page.images %}
+					   <!-- <img src="{{ image.url }}" class="featurette-image img-rounded pull-left" alt="{{ image.title }}" style="width:300px;" > -->
+						{% endfor %}
+						
+				        <h1 class="featurette-heading">{{ page.title }} <span class="muted">{{ page.subtitle }}</span></h1>
+					        {{ page.lead }}
+							<button type="button" class="btn btn-inverse" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
+							  <i class="icon-eye-open icon-white"></i> Click here to read {{ page.more }}
+							</button>
+				      </div>
+				  </div>
+			    </div>
+			  </div>
+			  <div class="accordion-group" style="border:none;">
+			    <div id="collapseTwo" class="accordion-body collapse">
+			      <div class="accordion-inner" style="border:none;padding:0;margin:0;">
+					<button type="button" class="btn pull-right" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+					  <strong>&times;</strong> Close {{ page.more }}
+					</button>
+			{% endif %}
+	      		{{ page.content }}
+			{%if page.more %}
+	      	  </div>
+		    </div>
+		  </div>
+		</div>
+		<hr/>
+			{% endif %}
+			{% if page.pdf %}
+			    <h6>PDF Downloads</h6>
+			    {% for pdf in page.pdf %}
+			      <p><i class="icon-file"></i> <a href="{{ pdf.url }}">{{ pdf.name }}</a></p>
+			    {% endfor %}
+			{% endif %}
+	      <hr/>
 
 			      	{% include 'partials/footer.html' %}
 

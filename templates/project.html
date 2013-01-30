@@ -1,58 +1,65 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-  "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>{{ page.name }} &gt; {{ page.title }}</title>
-    <link rel="alternate" type="application/atom+xml" href="{{ page.root_path }}/?/feed/">
-    <link rel="stylesheet" href="{{ page.root_path }}/public/docs/css/screen.css" type="text/css" media="screen"> 
-  </head>
-  <body>
-    <div id="container" class="{{ page.id }}">
-      <h1 class="col three">
-        <a href="{{ page.root_path }}">{{ page.name }}</a>
-        <strong>{{ page.profession }}</strong>
-      </h1>
-      <em class="col three">{{ page.email }}</em>
-      <hr>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+
+      	{% include 'partials/head.html' %}
+
+		<style>
+			.container.marketing {
+				margin-top:90px;
+				
+			}
+		</style>
+
+	</head>
+    <body>
+
       {% include 'partials/navigation/navigation.html' %}
-      <div id="content" class="col eight">
-        <p class="date col one">{{ page.date | date("Y, M-") }}
-        </p>
-        <div class="description col six">
-          <h2 class="col six"><a href="{{ page.root_path }}">{{ page.title }}</a></h2>
-          {{ page.content }}
-        </div>
-        <hr>
-        <p id="project-count" class="col one"><em>&#8470;</em> {{ page.index }}/{{ page.siblings_count }}</p>
-        <p id="gallery-count" class="col one">
-          <em>&#8470;</em> <span>1/1</span>
-        </p>
-        <div id="gallery-navigation" class="col three">
-          <p><a href="#" id="next-image">Next image</a> <em>&rarr;</em></p>
-          <p><a href="#" id="previous-image">Previous image</a> <em>&larr;</em></p>
-        </div>
-        <div class="col four">
-          {% if page.siblings %}
-            {% include 'partials/next-page.html' %}{% include 'partials/previous-page.html' %}
-          {% endif %}
-        </div>
-        {% include 'partials/assets/media.html' %}
-      </div>
-        <hr>
-        <div class="col three">&nbsp;</div>
-	      <div class="col three">
-    	  	<p>{{ page.client }}</p>
-        	<p>{{ page.partners }}</p>
-   	     	<p>{{ page.tags }}</p>
-    	  </div>
-      {% include 'partials/footer.html' %}
-    </div>
-    <script type="text/javascript" charset="utf-8">
-      document.getElementsByTagName('body')[0].className += ' js-enabled';
-    </script>
-    <script src="{{ page.root_path }}/public/docs/js/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
-    <script src="{{ page.root_path }}/public/docs/js/gallery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="{{ page.root_path }}/public/docs/js/init-gallery.js" type="text/javascript" charset="utf-8"></script>
-  </body>
+
+	   	<div class="container">
+
+			<div class="page-header">
+				<h1>{{ page.title }} <small>{{ page.date | date("Y") }}</small></h1>
+			</div>
+				
+			<div class="row">
+				<div class="span8">
+					<div id="myCarousel" class="carousel slide carousel-fade">
+						<!-- Carousel items -->
+						<div class="carousel-inner">
+					  	{% for image in page.images %}
+							<div class="item {% if loop.first %}active{% endif %}">
+								<img src="{{ resize_path( image.url, '1000', '1000', '16:9', 80) }}" alt="{{ image.title }}">
+								{% if image.description %}
+							      <em>{{ image.description }}</em>
+							    {% endif %}
+					   		</div>
+						{% endfor %}
+						</div>
+						<!-- Carousel nav -->
+						<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+						<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+					</div>
+				</div>
+				<div class="span4">
+					<!--<p class="lead">{{ page.lead }}</p>-->
+					<p class="lead"><small>{{ page.materials }}</small></p>
+					<small>{{ page.content }}</small>
+				</div>
+			</div>
+			{% if page.pdf %}
+				<hr/>
+			    <h6>PDF Downloads</h6>
+			    {% for pdf in page.pdf %}
+			      <p><i class="icon-file"></i> <a href="{{ pdf.url }}">{{ pdf.name }}</a></p>
+			    {% endfor %}
+			{% endif %}
+			<hr/>
+	      	{% include 'partials/footer.html' %}
+		</div>
+    </body>
 </html>
+

@@ -26,33 +26,67 @@
 		
 		$(document).ready(function() {
 
-		    function centerImage() {
-			    var imageHeight, wrapperHeight, overlap;
-			 	var container = $('.carousel .item');
-		        wrapperHeight = $('.carousel').height();
+			function centerImage() {
+				var imageWidth, imageHeight, wrapperWidth, wrapperHeight, overlap;
+				var container = $('.carousel .item');
+				wrapperHeight = $('.carousel').height();
+			        wrapperWidth = $('.carousel').width();
 				$( '.carousel .item img' ).each(function( index, elem ) {
-				  // this: the current, raw DOM element
-				  // index: the current element's index in the selection
-				  // elem: the current, raw DOM element (same as this)
-				  imageHeight = $( elem ).height();
-				  if(imageHeight == 0){
-					$( elem ).parent().addClass('measuring');
+					// this: the current, raw DOM element
+					// index: the current element's index in the selection
+					// elem: the current, raw DOM element (same as this)
 					imageHeight = $( elem ).height();
-					$( elem ).parent().removeClass('measuring');
-				  }
-				  overlap = (wrapperHeight - imageHeight) / 2;
-	        	  $( elem ).css('margin-top', overlap);
+					imageWidth = $( elem ).width();
+					if(imageHeight == 0){
+						$( elem ).parent().addClass('measuring');
+						imageHeight = $( elem ).height();
+						imageWidth = $( elem ).width();
+						$( elem ).parent().removeClass('measuring');
+					}
+					var imageAspect = imageHeight / imageWidth;
+					var wrapperAspect = wrapperHeight / wrapperWidth;
+					if (imageAspect > wrapperAspect){
+                                                $( elem ).removeClass('horisontal-center');
+                                                $( elem ).addClass('vertical-center');
+                	                        imageHeight = $( elem ).height();
+        	                                imageWidth = $( elem ).width();
+	                                        if(imageHeight == 0){
+                                	                $( elem ).parent().addClass('measuring');
+                        	                        imageHeight = $( elem ).height();
+                	                                imageWidth = $( elem ).width();
+        	                                        $( elem ).parent().removeClass('measuring');
+	                                        }
+						overlap = (wrapperHeight - imageHeight) / 2;
+						$( elem ).css('margin-top', overlap);
+						$( elem ).css('margin-left','');
+					} else {
+                                                $( elem ).removeClass('vertical-center');
+                                                $( elem ).addClass('horisontal-center');
+						overlap = (wrapperWidth - imageWidth) / 2;
+						imageHeight = $( elem ).height();
+                                                imageWidth = $( elem ).width();
+                                                if(imageHeight == 0){
+                                                        $( elem ).parent().addClass('measuring');
+                                                        imageHeight = $( elem ).height();
+                                                        imageWidth = $( elem ).width();
+                                                        $( elem ).parent().removeClass('measuring');
+                                                }
+						$( elem ).css('margin-top', '');
+	                                        $( elem ).css('margin-left', overlap);
+					}
 				});
 			}
 
-		    $(window).on("load resize", centerImage);
+			$(window).on("load resize", centerImage);
+			
+			centerImage();
 
-		    var el = document.getElementById('myCarousel');
-		    if (el.addEventListener) {  
-		        el.addEventListener("webkitTransitionEnd", centerImage, false); // Webkit event
-		        el.addEventListener("transitionend", centerImage, false); // FF event
-		        el.addEventListener("oTransitionEnd", centerImage, false); // Opera event
-		    }
+			var el = document.getElementById('myCarousel');
+			if (el && el.addEventListener) {  
+				el.addEventListener("webkitTransitionEnd", centerImage, false); // Webkit event
+				el.addEventListener("transitionend", centerImage, false); // FF event
+				el.addEventListener("oTransitionEnd", centerImage, false); // Opera event
+		    	}
 
 		});
 	})
