@@ -14,25 +14,132 @@
 </style>
 
 	</head>
+    <body>
 
+      {% set navbar_inverse=true %}
       	{% include 'partials/navigation/navigation.html' %}
 
     	<!-- Carousel
 	    ================================================== -->
 	    <div id="myCarousel" class="carousel slide carousel-frontpage">
-	      <div class="carousel-inner">
-		{% for child in page.root %}
+	      <div class="carousel-inner">	
+			<div class="item active carousel-loader">
+        		<div class="container" style="height:100%;">
+						<script type="application/processing">
+						int numBalls = 7;
+						float spring = 0.01;
+						float gravity = 0.03;
+						Ball[] balls = new Ball[numBalls];
+
+						void setup() 
+						{
+						  size(200, 400);
+						  noStroke();
+						  smooth();
+						  for (int i = 0; i < numBalls; i++) {
+						    balls[i] = new Ball(random(width), random(height), random(30, 60), i, balls);
+						  }
+						}
+
+						void draw() 
+						{
+						  background(0,0,0,0);
+						  for (int i = 0; i < numBalls; i++) {
+						    balls[i].collide();
+						    balls[i].move();
+						    balls[i].display();  
+						  }
+						}
+
+						class Ball {
+						  float x, y;
+						  float diameter;
+						  float vx = 0;
+						  float vy = 0.4;
+						  int id;
+						  Ball[] others;
+
+						  Ball(float xin, float yin, float din, int idin, Ball[] oin) {
+						    x = xin;
+						    y = yin;
+						    diameter = din;
+						    id = idin;
+						    others = oin;
+							if(id==0){
+								y = 0;
+							}
+						  } 
+
+						  void collide() {
+						    for (int i = id + 1; i < numBalls; i++) {
+						      float dx = others[i].x - x;
+						      float dy = others[i].y - y;
+						      float distance = sqrt(dx*dx + dy*dy);
+						      float minDist = others[i].diameter/2 + diameter/2;
+						      if (distance < minDist) { 
+						        float angle = atan2(dy, dx);
+						        float targetX = x + cos(angle) * minDist;
+						        float targetY = y + sin(angle) * minDist;
+						        float ax = (targetX - others[i].x) * spring;
+						        float ay = (targetY - others[i].y) * spring;
+						        vx -= ax;
+						        vy -= ay;
+						        others[i].vx += ax;
+						        others[i].vy += ay;
+						      }
+						    }   
+						  }
+
+						  void move() {
+						    vy += gravity;
+						    x += vx;
+						    y += vy;
+						    if (x + diameter/2 > width) {
+						      x = width - diameter/2;
+						      vx += -0.9; 
+						    }
+						    else if (x - diameter/2 < 0) {
+						      x = diameter/2;
+						      vx *= -0.9;
+						    }
+						    if (y + diameter/2 > height) {
+						      y = height - diameter/2;
+						      vy *= -0.45; 
+						    } 
+						    else if (y - diameter/2 < 0) {
+						      y = diameter/2;
+						      vy *= -0.9;
+						    }
+						  }
+
+						  void display() {
+							if(id==0){
+							    fill(27,27,27);
+							} else{
+							    fill(255);
+							}
+						    ellipse(x, y, diameter, diameter);
+						  }
+						}
+						</script><canvas width="200" height="400" style="position:absolute;bottom:0%;right:0%;margin-bottom:-4px;z-index:-1"></canvas>
+				    <div class="carousel-caption">
+		              <h1>Featured works</h1>
+		              <p class="lead">loading...</p>
+		            </div>
+		          </div>
+		        </div>
+		   {% for child in page.root %}
 			{% if child.children %}
 	    		{% for child in child.children %}
 		  			{% if "Featured" in child.tags %}
-				        <div class="item {% if loop.first %}active{% endif %}">
+				        <div class="item">
 				          <img src="{{ resize_path( child.thumb.url, '1200', '', '', 80) }}" alt="{% if child.thumb.description %} {{ child.thumb.description }} {% endif %}" class="vertical-center">
 				          <div class="container">
 				            <div class="carousel-caption">
 				              <h1>{{ child.title }}</h1>
 				              <p class="lead">{{ child.date | date("Y") }}</p>
 							  <p class="lead hidden-phone">{{ child.materials | striptags }} &mdash;&nbsp;{{ child.lead | striptags }}</p>
-			              	  <a class="btn" href="{{ child.url }}">See the photos{% if child.html %} and videos{% endif %} &raquo;</a> 
+			              	  <a class="btn btn-inverse btn-large" href="{{ child.url }}">{% if child.html %}Watch a video {% else %}See the photos{% endif %} &raquo;</a> 
 				            </div>
 				          </div>
 				        </div>
@@ -45,8 +152,6 @@
 	      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
 	    </div><!-- /.carousel -->
 
-
-
 		    <!-- Marketing messaging and featurettes
 		    ================================================== -->
 		    <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -56,22 +161,84 @@
 		      <!-- Three columns of text below the carousel -->
 		      <div class="row">
 		        <div class="span4">
-		          <img class="img-circle" data-src="holder.js/140x140">
-		          <h2>Heading</h2>
-		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-		          <p><a class="btn" href="#">View details &raquo;</a></p>
+		          	<script type="application/processing">
+void setup() 
+{
+  size(140, 140);
+  noStroke();
+  background(255,3);
+  smooth();
+}
+
+void draw() 
+{
+  fill(245);
+  noStroke();
+  ellipse(width/2,height/2,width,height);
+  fill(240,255);
+  stroke(90,255);
+  strokeWeight(6); 
+  strokeCap(ROUND);
+  strokeJoin(ROUND);
+  rect(45,35,width-70,height-90);
+  rect(25,55,width-70,height-90);
+}
+
+				</script><canvas width="140" height="140"></canvas>
+		          <!--<h2>What</h2>-->
+		          <p>This site features a selection of my works. They range from complex large scale installations and scenographies to small artefacts. They all involve custom tailored software.</p>
+		          <p><a class="btn" href="{{ page.site_root }}works">Selected works &raquo;</a></p>
 		        </div><!-- /.span4 -->
 		        <div class="span4">
-		          <img class="img-circle" data-src="holder.js/140x140">
-		          <h2>Heading</h2>
-		          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-		          <p><a class="btn" href="#">View details &raquo;</a></p>
+		             <script type="application/processing">
+void setup()
+{
+  size(140, 140);
+  noStroke();
+  background(255,3);
+  smooth();
+}
+
+void draw()
+{
+  fill(245);
+  noStroke();
+  ellipse(width/2,height/2,width,height);
+  fill(240,255);
+  stroke(90,255);
+  strokeWeight(5); 
+  strokeCap(ROUND);
+}
+
+                                </script><canvas width="140" height="140"></canvas>
+		          <!--<h2>How</h2>-->
+		          <p>Most of the source code for the software in my work is public and open source. Coding is a collective practice, and a few of my experiments might take on a life of their own.</p>
+		          <p><a class="btn" href="{{ page.site_root }}/lab">Visit the lab &raquo;</a></p>
 		        </div><!-- /.span4 -->
 		        <div class="span4">
-		          <img class="img-circle" data-src="holder.js/140x140">
-		          <h2>Heading</h2>
-		          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-		          <p><a class="btn" href="#">View details &raquo;</a></p>
+                             <script type="application/processing">
+void setup()              
+{                           size(140, 140);
+  noStroke();             
+  background(255,3);    
+  smooth();             
+}                         
+                          
+void draw()
+{
+  fill(245);
+  noStroke();
+  ellipse(width/2,height/2,width,height);
+  fill(240,255);
+  stroke(90,255);
+  strokeWeight(5);
+  strokeCap(ROUND);
+}
+
+                                </script><canvas width="140" height="140"></canvas>
+		          <!--<h2>Who</h2>-->
+		          <p>My interest in programming stems from a fascination of creating phenomena with dynamic aestetics. Read a bit more of that story and see where it's taken me in my biography and CV.</p>
+		          <p><a class="btn" href="{{ page.site_root }}/about">About me &raquo;</a></p>
 		        </div><!-- /.span4 -->
 		      </div><!-- /.row -->
 

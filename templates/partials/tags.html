@@ -1,0 +1,26 @@
+{% for tag in page.tags | split(', ') | sort %}
+	{% set otherTags = false%}
+	{% for sibling in page.siblings %}
+		{% if tag in sibling.tags %}
+			{% set otherTags = true%}
+		{% endif %}
+	{% endfor %}
+	
+	{% if otherTags == true %}
+					   <a href="#" class="label{% if 'Featured' in tag %} label-info{% endif %} tag-{{ tag }}" style="opacity: 0.4;" 
+					      rel="tooltip" data-trigger="click" data-placement="top"
+					      data-original-title="
+					      <div style='text-align:left'>
+					   <strong>Other {{ tag | lower }} works</strong><br/>
+					   	{% for sibling in page.siblings %}
+					   		{% if tag in sibling.tags %}
+					   			<a href='{{sibling.url}}' style='color:white'>{{sibling.title}}</a><br/>
+					   		{% endif %}
+						{% endfor %}
+						</div>
+					      " data-html="true"
+					      >{{ tag }}</a>
+					    {% else %}
+					    <span class="label{% if 'Featured' in tag %} label-info{% endif %} tag-{{ tag }}" style="opacity: 0.4;" >{{ tag }}</span>
+	{% endif %}
+{% endfor %}

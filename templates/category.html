@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+
+      	{% include 'partials/head.html' %}
+
+		<style>
+			.container.marketing {
+				margin-top:90px;
+			}
+		</style>
+
+	</head>
+    <body>
+      	{% set navbar_inverse=true %}
+      	{% include 'partials/navigation/navigation.html' %}
+	    <div class="container">
+
+			<div class="page-header">
+				<h1>{{ page.title | capitalize }}</h1>
+			</div>			
+
+			  {% for child in page.children %}
+					{% if child.date | date("Y") != formerYear %}
+						{% if child.index != 1 %}
+			<hr/>
+						{% endif %}
+			<div class="row img-gray">
+				<div class="span2">
+					<h4 class="muted">{{ child.date | date("Y") }}</h4>
+					<p>&nbsp;</p>
+						{% set formerYear = (child.date | date("Y")) %}			
+				</div>
+					{% else %}
+			<div class="row img-gray" style="margin-top:12px;">
+				<div class="span2">
+				&nbsp;
+				</div>
+					{% endif%}		
+					
+				<div class="span3" style="text-align:right" class="hidden-phone">
+					<a href="{{ child.url }}">
+						<img src="{{ resize_path( child.thumb.url, '', '250', '1:1', 80) }}" style="margin:14px 0px;" class="gray hidden-phone"/>
+					</a>
+				</div>
+				<div class="span3" class="visible-phone">
+					<a href="{{ child.url }}">
+						<img src="{{ resize_path( child.thumb.url, '800', '', '3:1', 80) }}" style="margin:14px 0px;" class="gray visible-phone"/>
+					</a>
+				</div>
+				<div class="span7">
+					<a href="{{ child.url }}" style="color:inherit;text-decoration: none;">
+					<h4>{{ child.title }}</h4>
+					<p>{{ child.materials | striptags }}<br/>&mdash;&nbsp;{{ child.lead | striptags }}</p></a>
+					<p class="hidden-phone"><small>
+						{% include 'partials/tags.html' with {'page':child} %}
+					<br/>&nbsp;</small></p>
+				</div>
+			</div>
+			  {% endfor %}
+			
+			{% if page.pdf %}
+			    <h6>PDF Downloads</h6>
+			    {% for pdf in page.pdf %}
+			      <p><i class="icon-file"></i> <a href="{{ pdf.url }}">{{ pdf.name }}</a></p>
+			    {% endfor %}
+			{% endif %}
+	      <hr/>
+
+			      	{% include 'partials/footer.html' %}
+
+    </body>
+</html>
