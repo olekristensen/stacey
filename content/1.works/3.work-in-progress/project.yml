@@ -43,7 +43,7 @@ appearances:
     place: Alt_Cph, Copenhagen
     url: http://altcph.dk/2008/
 lead: |
-  Generative plotter drawings. 
+  Generative plotter drawings
 content: |
   Reviving an old Roland plotter, i programmed it to doodle in Processing. 
   It took a few months, but it eventually ended up doodling the same way I do myself during long sedentary phone conversations.
