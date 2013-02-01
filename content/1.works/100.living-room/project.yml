@@ -36,9 +36,10 @@ appearances:
     url: http://dansehallerne.dk
 
 content: |
-  Living Room is a room in motion, evoked not just by the dancers but also by an almost organically living video scenography. The floor starts to move, the walls starts to move – the space begins to breathe….
-  In the meeting between the human body and a motion sensitive scenography, Living Room questions who is the puppet and who is the puppeteer – who controls who?
+ Living Room is a performance of an hour with 3 dancers on stage. The projected scenography evolves during the whole performance. Most of the video scenography is made of a polygon world that is randomly generated in the beginning of each performance. During the night it is being crumbled and manipulated live by the dancers.
 
-  For this performance I co-developed the scenographic concept including a method of shifting the z-axis of a plane to allow for trompe-d’oil effects of holes in the floor and crumbling paper. The projectors have 0.7 wide angle optics and the software is qued from qLab using apple’s midi networking capabilities.
+  For this performance I co-developed the scenographic concept and implemented some new concepts in our software. Most notable a simple method of shifting the z-axis of a plane to allow for trompe-d’oil effects of eg. holes in the floor from a movable vantage point. 
+  
+  The projectors have 0.7 wide angle optics and the software is qued from qLab using apple’s midi networking capabilities.
 
   The software is open source and we are very grateful to the openFrameworks community, whose efforts form the basis of our programming work. The software for Living Room builds further on Cocoa and Objective-C wrapper for openFrameworks; ofxCocoaPlugins. We intergrate openFrameworks into a cocoa-based Mac OS X Lion application running on a mac pro seeing the dancers through a Allied Vision Technologies Manta camera, showing the openGL graphics using two video projectors, shooting diagonally onto the white dance floor.
