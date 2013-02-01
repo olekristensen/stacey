@@ -1,0 +1,44 @@
+title: Living Room
+tags: Modern Dance, Projection Mapping, Infrared Tracking, Interactive, Set Design, Featured, OpenFrameworks
+partners: Jonas Jongejan, Tina Tarpgaard
+client: Recoil Performance Group
+date: April 2012
+materials: Infrared camera, videoprojectors, custom software.
+github: {'user':'RecoilPerformanceGroup','repo':Livingroom'}
+lead: Award winning trompe-d’oil on the dance floor.  
+awards:
+ - 
+    date: May 2012
+    title: Best Dance Performance of the Year
+    place: Reumert, the National Danish Theatre Awards
+    url: http://www.aaretsreumert.dk/index.dsp?page=5055
+photocredits: Søren Meisner
+appearances: 
+  - 
+    date: Dec 2012
+    occasion: ICE HOT, Nordic Dance Platform 
+    place: Helsinki
+    url: http://www.nordicdanceplatform.com/program_on_stage/living_room.html
+  - 
+    date: Nov 2012
+    occasion: Tempel Tanzfestival 
+    place: ZKM, Karlsruhe
+    url: http://www.kulturverein-tempel.de/index.php?id=356
+  - 
+    date: Nov 2012
+    occasion: Performance 
+    place: Dansehallerne, Copenhagen
+    url: http://dansehallerne.dk
+  - 
+    date: April 2012
+    occasion: Premiere 
+    place: Dansehallerne, Copenhagen
+    url: http://dansehallerne.dk
+
+content: |
+  Living Room is a room in motion, evoked not just by the dancers but also by an almost organically living video scenography. The floor starts to move, the walls starts to move – the space begins to breathe….
+  In the meeting between the human body and a motion sensitive scenography, Living Room questions who is the puppet and who is the puppeteer – who controls who?
+
+  For this performance I co-developed the scenographic concept including a method of shifting the z-axis of a plane to allow for trompe-d’oil effects of holes in the floor and crumbling paper. The projectors have 0.7 wide angle optics and the software is qued from qLab using apple’s midi networking capabilities.
+
+  The software is open source and we are very grateful to the openFrameworks community, whose efforts form the basis of our programming work. The software for Living Room builds further on Cocoa and Objective-C wrapper for openFrameworks; ofxCocoaPlugins. We intergrate openFrameworks into a cocoa-based Mac OS X Lion application running on a mac pro seeing the dancers through a Allied Vision Technologies Manta camera, showing the openGL graphics using two video projectors, shooting diagonally onto the white dance floor.
