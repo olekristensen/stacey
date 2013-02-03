@@ -13,6 +13,7 @@ class Stacey_Twig_Extension extends Twig_Extension {
   public function getFilters() {
     # custom twig filters
     return array(
+      'split' => new Twig_Filter_Method($this, 'split'),
       'absolute' => new Twig_Filter_Method($this, 'absolute'),
       'context' => new Twig_Filter_Method($this, 'context')
     );
@@ -132,10 +133,23 @@ class Stacey_Twig_Extension extends Twig_Extension {
   #
   #   transforms relative path to absolute
   #
+  
   function absolute($relative_path) {
     $server_name = (($_SERVER['HTTPS'] ? 'https://' : 'http://')).$_SERVER['HTTP_HOST'];
     return $server_name.str_replace('/index.php', strstr($relative_path, '/content'), $_SERVER['SCRIPT_NAME']);
   }
+
+  #
+  #   splits a string into an array
+  #
+
+  function split($value, $delimiter, $limit = null) {
+    if (empty($delimiter)) {
+        return str_split($value, null === $limit ? 1 : $limit);
+    }
+
+    return null === $limit ? explode($delimiter, $value) : explode($delimiter, $value, $limit);
+ }
 
 }
 

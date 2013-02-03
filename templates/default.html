@@ -10,7 +10,6 @@
 .navbar-wrapper{
 	margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
 }
-	
 </style>
 
 	</head>
@@ -130,10 +129,10 @@
 		        </div>
 		   {% for child in page.root %}
 			{% if child.children %}
-	    		{% for child in child.children %}
+	    		{% for child in child.children | reverse%}
 		  			{% if "Featured" in child.tags %}
 				        <div class="item">
-				          <img src="{{ resize_path( child.thumb.url, '1200', '', '', 80) }}" alt="{% if child.thumb.description %} {{ child.thumb.description }} {% endif %}" class="vertical-center">
+				          <img src="{{ resize_path( child.thumb.url, '1200', '', '', 80) }}" alt="{% if child.thumb.description %} {{ child.thumb.description }} {% endif %}" class="vertical-center gray">
 				          <div class="container">
 				            <div class="carousel-caption">
 				              <h1>{{ child.title }}</h1>
@@ -161,84 +160,22 @@
 		      <!-- Three columns of text below the carousel -->
 		      <div class="row">
 		        <div class="span4">
-		          	<script type="application/processing">
-void setup() 
-{
-  size(140, 140);
-  noStroke();
-  background(255,3);
-  smooth();
-}
-
-void draw() 
-{
-  fill(245);
-  noStroke();
-  ellipse(width/2,height/2,width,height);
-  fill(240,255);
-  stroke(90,255);
-  strokeWeight(6); 
-  strokeCap(ROUND);
-  strokeJoin(ROUND);
-  rect(45,35,width-70,height-90);
-  rect(25,55,width-70,height-90);
-}
-
-				</script><canvas width="140" height="140"></canvas>
-		          <!--<h2>What</h2>-->
-		          <p>This site features a selection of my works. They range from complex large scale installations and scenographies to small artefacts. They all involve custom tailored software.</p>
-		          <p><a class="btn" href="{{ page.site_root }}works">Selected works &raquo;</a></p>
+		          	<script type="application/processing" src="/processing/iconWork/iconWork.pde">
+		          	</script><canvas width="140" height="140"></canvas>
+		          {{ page.column1text }}
+		          <p><a class="btn" href="{{ page.site_root }}{{ page.column1url }}">{{ page.column1button }} &raquo;</a></p>
 		        </div><!-- /.span4 -->
 		        <div class="span4">
-		             <script type="application/processing">
-void setup()
-{
-  size(140, 140);
-  noStroke();
-  background(255,3);
-  smooth();
-}
-
-void draw()
-{
-  fill(245);
-  noStroke();
-  ellipse(width/2,height/2,width,height);
-  fill(240,255);
-  stroke(90,255);
-  strokeWeight(5); 
-  strokeCap(ROUND);
-}
-
-                                </script><canvas width="140" height="140"></canvas>
-		          <!--<h2>How</h2>-->
-		          <p>Most of the source code for the software in my work is public and open source. Coding is a collective practice, and a few of my experiments might take on a life of their own.</p>
-		          <p><a class="btn" href="{{ page.site_root }}/lab">Visit the lab &raquo;</a></p>
+		             <script type="application/processing" src="/processing/iconLab/iconLab.pde">
+                     </script><canvas width="140" height="140"></canvas>
+		          {{ page.column2text }}
+		          <p><a class="btn" href="{{ page.site_root }}{{ page.column2url }}">{{ page.column2button }} &raquo;</a></p>
 		        </div><!-- /.span4 -->
 		        <div class="span4">
-                             <script type="application/processing">
-void setup()              
-{                           size(140, 140);
-  noStroke();             
-  background(255,3);    
-  smooth();             
-}                         
-                          
-void draw()
-{
-  fill(245);
-  noStroke();
-  ellipse(width/2,height/2,width,height);
-  fill(240,255);
-  stroke(90,255);
-  strokeWeight(5);
-  strokeCap(ROUND);
-}
-
-                                </script><canvas width="140" height="140"></canvas>
-		          <!--<h2>Who</h2>-->
-		          <p>My interest in programming stems from a fascination of creating phenomena with dynamic aestetics. Read a bit more of that story and see where it's taken me in my biography and CV.</p>
-		          <p><a class="btn" href="{{ page.site_root }}/about">About me &raquo;</a></p>
+		             <script type="application/processing" src="/processing/iconMe/iconMe.pde">
+                     </script><canvas width="140" height="140"></canvas>
+		          {{ page.column3text }}
+		          <p><a class="btn" href="{{ page.site_root }}{{ page.column3url }}">{{ page.column3button }} &raquo;</a></p>
 		        </div><!-- /.span4 -->
 		      </div><!-- /.row -->
 

@@ -21,24 +21,26 @@
             <a class="brand" href="{{ page.root_path }}">{{ page.name }} <span class="muted">is a software artist</span></a>
 			<div class="nav-collapse collapse">
     <ul class="nav">
+		<li{% if page.url == './/' %} class="active"{% endif %}><a href="{{ page.root_path }}">Home</a></li>
 {% for child in page.root %}
 	{% if child.children %}
 		<li class="dropdown{% if child.is_current %} active{% endif %}">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ child.title }} <b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ child.title | capitalize }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
 			<li class="nav-header">{% if child.nav_featured %}{{ child.nav_featured }}{% else %}Featured {{ child.title }}{% endif %}</li>
-			{% for grandchild in child.children %}
+			{% for grandchild in sortbydate(child.children , 'date') | reverse %}
                     {% if "Featured" in grandchild.tags %}
-				<li><a href="{{ grandchild.url }}">{% if child.nav_show_year %}<small class="muted">{{ grandchild.date | date("Y") }}</small> &nbsp;{% endif %}{{ grandchild.title }}</a></li>
+				<li><a href="{{ grandchild.url }}">{{ grandchild.title }}{% if child.nav_show_year %}<small class="muted"> &nbsp;{{ grandchild.date | date("Y") }}</small>{% endif %}</a></li>
             		{% endif %}
 			{% endfor %}
                         <li class="divider"></li>
+                        <li class="nav-header">Everything</li>
                         <li><a href="{{ child.url }}">{% if child.nav_all %}{{ child.nav_all }}{% else %}List of all {{ child.title }}{% endif %}</a></li>
 			</ul>
 		</li>
 	{% else %}
 		<li{% if child.is_current %} class="active"{% endif %}>
-			<a href="{{ child.url }}">{{ child.slug }}</a>
+			<a href="{{ child.url }}">{{ child.slug | capitalize }}</a>
 	    </li>
 	{% endif %}
   {% endfor %}

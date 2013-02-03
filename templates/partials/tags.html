@@ -5,22 +5,21 @@
 			{% set otherTags = true%}
 		{% endif %}
 	{% endfor %}
-	
 	{% if otherTags == true %}
-					   <a href="#" class="label{% if 'Featured' in tag %} label-info{% endif %} tag-{{ tag }}" style="opacity: 0.4;" 
-					      rel="tooltip" data-trigger="click" data-placement="top"
+					   <a href="#" class="label{% if 'Featured' in tag %} label-info{% endif %} tag" 
+					      rel="tooltip" data-trigger="click" data-placement="bottom"
 					      data-original-title="
 					      <div style='text-align:left'>
-					   <strong>Other {{ tag | lower }} works</strong><br/>
+							<strong>Other {{ tag | lower }} works</strong><br/>
 					   	{% for sibling in page.siblings %}
 					   		{% if tag in sibling.tags %}
-					   			<a href='{{sibling.url}}' style='color:white'>{{sibling.title}}</a><br/>
+					   		<a href='{{sibling.url}}' style='color:white'>{{sibling.title}} <small class='muted'><strong>{{sibling.date | date("Y")}}</strong></small></a><br/>
 					   		{% endif %}
 						{% endfor %}
 						</div>
-					      " data-html="true"
-					      >{{ tag }}</a>
+					      " data-html="true" data-tag="{{tag}}"
+					      >{{ tag }} <b class="caret"></b></a>
 					    {% else %}
-					    <span class="label{% if 'Featured' in tag %} label-info{% endif %} tag-{{ tag }}" style="opacity: 0.4;" >{{ tag }}</span>
+					    <span class="label{% if 'Featured' in tag %} label-info{% endif %} tag-{{ tag | replace(' ', '-') }}" style="opacity: 0.4;" >{{ tag }}</span>
 	{% endif %}
 {% endfor %}

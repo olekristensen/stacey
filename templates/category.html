@@ -23,19 +23,20 @@
 				<h1>{{ page.title | capitalize }}</h1>
 			</div>			
 
-			  {% for child in page.children %}
+			  {% set formerYear = -1 %}	
+			  {% for child in sortbydate(page.children , 'date') | reverse %}
 					{% if child.date | date("Y") != formerYear %}
-						{% if child.index != 1 %}
+						{% if formerYear > 0 %}
 			<hr/>
 						{% endif %}
-			<div class="row img-gray">
+			<div class="row img-gray-hover">
 				<div class="span2">
 					<h4 class="muted">{{ child.date | date("Y") }}</h4>
 					<p>&nbsp;</p>
 						{% set formerYear = (child.date | date("Y")) %}			
 				</div>
 					{% else %}
-			<div class="row img-gray" style="margin-top:12px;">
+			<div class="row img-gray-hover" style="margin-top:12px;">
 				<div class="span2">
 				&nbsp;
 				</div>
@@ -43,12 +44,12 @@
 					
 				<div class="span3" style="text-align:right" class="hidden-phone">
 					<a href="{{ child.url }}">
-						<img src="{{ resize_path( child.thumb.url, '', '250', '1:1', 80) }}" style="margin:14px 0px;" class="gray hidden-phone"/>
+						<img src="{{ resize_path( child.thumb.url, '', '250', '1:1', 80) }}" style="margin:14px 0px;" class="gray-hover hidden-phone"/>
 					</a>
 				</div>
 				<div class="span3" class="visible-phone">
 					<a href="{{ child.url }}">
-						<img src="{{ resize_path( child.thumb.url, '800', '', '3:1', 80) }}" style="margin:14px 0px;" class="gray visible-phone"/>
+						<img src="{{ resize_path( child.thumb.url, '800', '', '3:1', 80) }}" style="margin:14px 0px;" class="gray-hover visible-phone"/>
 					</a>
 				</div>
 				<div class="span7">

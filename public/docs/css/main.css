@@ -23,8 +23,12 @@
 	   -moz-font-smoothing: normal;
 	     -o-font-smoothing: antialiased;
 			font-smoothing: antialiased;
-}
+ }
 
+ footer {
+ 	margin-top:80px;
+ 	
+ }
 
 /* FONTS
  -------------------------------------------------- */

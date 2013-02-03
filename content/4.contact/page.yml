@@ -37,10 +37,11 @@ content: |
  </div>
  <hr />
  <dl class="dl-horizontal">
-    <dt>Social Networks</dt>
+    <dt>Network profiles</dt>
     <dd>
-    <a href="http://www.facebook.com/olesaustrupkristensen">Facebook</a><br />
+    <a href="http://github.com/olekristensen">Github</a><br />
     <a href="http://twitter.com/olefab">Twitter</a><br />
+    <a href="http://www.facebook.com/olesaustrupkristensen">Facebook</a><br />
     <a href="http://www.linkedin.com/in/olefab">LinkedIn</a>
     </dd>
  </dl>

@@ -13,18 +13,19 @@
       {% include 'partials/navigation/navigation.html' %}
 
 	   	<div class="container">
-
+			{% for up in page.parent %}<a href="{{up.url}}" class="header">{% endfor %}
 			<div class="page-header">
-				<h1>{{ page.title }} <small>{{ page.date | date("Y") }}</small></h1>
+				<h1>{% for up in page.parent %}<span class="backarrow"><small>&larr; {{ up.nav_all }} </small></span>{% endfor %}{{ page.title }} <small>{{ page.date | date("Y") }}</small></h1>
 			</div>
+			{% for up in page.parent %}</a>{% endfor %}
 				
 			<div class="row">
 				<div class="span8">
 					{% for html in page.html %}
 						{{ html.content }}
-						<p>&nbsp;</p>
 					{% endfor %}
-					<div id="myCarousel" class="carousel slide carousel-fade">
+					{% if page.images %}
+					<div id="myCarousel" class="carousel slide carousel-fade" style="margin-bottom:4px;">
 						<!-- Carousel items -->
 						<div class="carousel-inner">
 					  	{% for image in page.images %}
@@ -40,6 +41,8 @@
 						<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 						<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 					</div>
+					<p><small class="muted">Photos by {{ page.photocredits }}</small></p>
+					{% endif %}
 				</div>
 				<div class="span4">
 					<!--<p class="lead">{{ page.lead }}</p>-->
@@ -47,10 +50,26 @@
 					<p style="margin-top:30px;"><small>
 						{% include 'partials/tags.html' %}
 					<br/>&nbsp;</small></p>
-
-					<small>{{ page.content }}</small>
+					<h5>{{ page.lead }}</h5>
+					{{ page.content }}
+					<p><small>{% if page.partners %}With: {{ page.partners }}<br />{% endif %}
+					{% if page.client %}For: {{ page.client }}{% endif %}</small></p>
 
 					<div class="visible-desktop">
+					{% if page.awards %}
+						<hr/>
+						<p class="lead"><small>Awards:</small></p>
+						<table>
+							<tbody>
+							{% for award in page.awards %}
+						    <tr>
+						      <td nowrap="nowrap" valign="top"><small>{{award.date | date("Y")}}</small>&nbsp;</td>
+						      <td><small><a href="{{ award.url }}">{{ award.title }} at {{ award.place }}</a></small></td>
+						    </tr>
+							{% endfor %}
+						  </tbody>
+						</table>
+					{% endif %}
 					{% if page.appearances %}
 						<hr/>
 						<p class="lead"><small>Appearances:</small></p>
@@ -65,7 +84,7 @@
 						  </tbody>
 						</table>
 					{% endif %}
-						{% if page.github %}
+					{% if page.github %}
 						<hr/>
 						<p class="lead"><small>Open Source code:</small></p>
 						<p>
@@ -75,12 +94,31 @@
 	<iframe src="http://ghbtns.com/github-btn.html?user={{page.github['user']}}&repo={{page.github['repo']}}&type=fork"
 	  allowtransparency="true" frameborder="0" scrolling="0" width="53" height="30"></iframe>
 						</p>
-						{% endif %}
+						{% elseif page.googlecode %}
+						<hr/>
+						<p class="lead"><small>Open Source code:</small></p>
+						<p><a class="btn btn-small" href="http://code.google.com/p/{{ page.googlecode }}">Google Code Project</a>
+						</p>
+					{% endif %}
 					</div>
 				</div>
 			</div>
-			{% if page.appearances %}
 			<div class="hidden-desktop">
+			{% if page.awards %}
+				<hr/>
+				<p class="lead"><small>Awards:</small></p>
+				<table>
+					<tbody>
+					{% for award in page.awards %}
+				    <tr>
+				      <td nowrap="nowrap" valign="top"><small>{{award.date | date("Y")}}</small>&nbsp;</td>
+				      <td><small><a href="{{ award.url }}">{{ award.title }} at {{ award.place }}</a></small></td>
+				    </tr>
+					{% endfor %}
+				  </tbody>
+				</table>
+			{% endif %}
+			{% if page.appearances %}
 				<hr/>
 				<p class="lead"><small>Appearances:</small></p>
 				<table>
@@ -93,6 +131,7 @@
 					{% endfor %}
 				  </tbody>
 				</table>
+			{% endif %}
 			{% if page.github %}
 				<hr/>
 				<p class="lead"><small>Open Source code:</small></p>
@@ -103,9 +142,13 @@
 	<iframe src="http://ghbtns.com/github-btn.html?user={{page.github['user']}}&repo={{page.github['repo']}}&type=fork"
 	  allowtransparency="true" frameborder="0" scrolling="0" width="53" height="30"></iframe>
 				</p>
+			{% elseif page.googlecode %}
+				<hr/>
+				<p class="lead"><small>Open Source code:</small></p>
+				<p><a class="btn btn-small" href="http://code.google.com/p/{{ page.googlecode }}">Google Code Project</a>
+				</p>
 			{% endif %}
 			</div>
-			{% endif %}
 			{% if page.pdf %}
 				<hr/>
 			    <h6>PDF Downloads</h6>

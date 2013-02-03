@@ -1,9 +1,17 @@
       <!-- FOOTER -->
       <footer>
+      <!-- Breadcrumbs -->
+	  {% if page.url != './/' %}
+      <ul class="breadcrumb">
+  		<li><a href="{{ page.root_path }}">{{ page.name }}</a> <span class="divider">/</span></li>
+  		{% for parent in page.parents %}
+  		<li><a href="{{ parent.url }}">{{ parent.slug | lower }}</a> <span class="divider">/</span></li>
+  		{% endfor %}
+  		<li class="active">{{ page.title | lower }}</li>
+	  </ul>
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>ole kristensen {{ page.current_year }} &middot; <a class="atom-rss" href="{{ page.root_path }}/?/feed/">RSS</a></p>
       </footer>
-
+	  {% endif %}
     </div><!-- /.container -->
 
 <!-- Le javascript
@@ -29,63 +37,65 @@
 		  pause:''
 		});
 		
-		$(document).ready(function() {
+		centerImage();
 
-			function removeLoader() {
-				$('.carousel-loader').remove();
-			}
+		function removeLoader() {
+			$('.carousel-loader').remove();
+		}
 
-			function centerImage() {
-				var imageWidth, imageHeight, wrapperWidth, wrapperHeight, overlap;
-				var container = $('.carousel .item');
-				wrapperHeight = $('.carousel').height();
-			        wrapperWidth = $('.carousel').width();
-				$( '.carousel .item img' ).each(function( index, elem ) {
-					// this: the current, raw DOM element
-					// index: the current element's index in the selection
-					// elem: the current, raw DOM element (same as this)
+		function centerImage() {
+			var imageWidth, imageHeight, wrapperWidth, wrapperHeight, overlap;
+			var container = $('.carousel .item');
+			wrapperHeight = $('.carousel').height();
+		        wrapperWidth = $('.carousel').width();
+			$( '.carousel .item img' ).each(function( index, elem ) {
+				// this: the current, raw DOM element
+				// index: the current element's index in the selection
+				// elem: the current, raw DOM element (same as this)
+				imageHeight = $( elem ).height();
+				imageWidth = $( elem ).width();
+				if(imageHeight == 0){
+					$( elem ).parent().addClass('measuring');
 					imageHeight = $( elem ).height();
 					imageWidth = $( elem ).width();
-					if(imageHeight == 0){
-						$( elem ).parent().addClass('measuring');
-						imageHeight = $( elem ).height();
-						imageWidth = $( elem ).width();
-						$( elem ).parent().removeClass('measuring');
-					}
-					var imageAspect = imageHeight / imageWidth;
-					var wrapperAspect = wrapperHeight / wrapperWidth;
-					if (imageAspect > wrapperAspect){
-                                                $( elem ).removeClass('horisontal-center');
-                                                $( elem ).addClass('vertical-center');
-                	                        imageHeight = $( elem ).height();
-        	                                imageWidth = $( elem ).width();
-	                                        if(imageHeight == 0){
-                                	                $( elem ).parent().addClass('measuring');
-                        	                        imageHeight = $( elem ).height();
-                	                                imageWidth = $( elem ).width();
-        	                                        $( elem ).parent().removeClass('measuring');
-	                                        }
-						overlap = (wrapperHeight - imageHeight) / 2;
-						$( elem ).css('margin-top', overlap);
-						$( elem ).css('margin-left','');
-					} else {
-                                                $( elem ).removeClass('vertical-center');
-                                                $( elem ).addClass('horisontal-center');
-						overlap = (wrapperWidth - imageWidth) / 2;
-						imageHeight = $( elem ).height();
-                                                imageWidth = $( elem ).width();
-                                                if(imageHeight == 0){
-                                                        $( elem ).parent().addClass('measuring');
-                                                        imageHeight = $( elem ).height();
-                                                        imageWidth = $( elem ).width();
-                                                        $( elem ).parent().removeClass('measuring');
-                                                }
-						$( elem ).css('margin-top', '');
-	                                        $( elem ).css('margin-left', overlap);
-					}
-				});
-			}
-
+					$( elem ).parent().removeClass('measuring');
+				}
+				var imageAspect = imageHeight / imageWidth;
+				var wrapperAspect = wrapperHeight / wrapperWidth;
+				if (imageAspect > wrapperAspect){
+                                            $( elem ).removeClass('horisontal-center');
+                                            $( elem ).addClass('vertical-center');
+            	                        imageHeight = $( elem ).height();
+    	                                imageWidth = $( elem ).width();
+                                        if(imageHeight == 0){
+                            	                $( elem ).parent().addClass('measuring');
+                    	                        imageHeight = $( elem ).height();
+            	                                imageWidth = $( elem ).width();
+    	                                        $( elem ).parent().removeClass('measuring');
+                                        }
+					overlap = (wrapperHeight - imageHeight) / 2;
+					$( elem ).css('margin-top', overlap);
+					$( elem ).css('margin-left','');
+				} else {
+                                            $( elem ).removeClass('vertical-center');
+                                            $( elem ).addClass('horisontal-center');
+					overlap = (wrapperWidth - imageWidth) / 2;
+					imageHeight = $( elem ).height();
+                                            imageWidth = $( elem ).width();
+                                            if(imageHeight == 0){
+                                                    $( elem ).parent().addClass('measuring');
+                                                    imageHeight = $( elem ).height();
+                                                    imageWidth = $( elem ).width();
+                                                    $( elem ).parent().removeClass('measuring');
+                                            }
+					$( elem ).css('margin-top', '');
+                                        $( elem ).css('margin-left', overlap);
+				}
+			});
+		}
+		
+		$(document).ready(function() {
+			
 			$(window).on("load resize", centerImage);
 			
 			$('.carousel').on("slid", centerImage);
@@ -95,7 +105,7 @@
 
 			// TAG TOOLTIPS
 			
-			$("a[rel=tooltip]")
+			$("a.tag[rel=tooltip]")
 	      	.tooltip({
 	      		delay: { show: 100, hide: 500 }
 	      	})
@@ -103,19 +113,19 @@
 	      		if($(this).hasClass('in')){
 	      			$(this).removeClass('in');
 	      		} else {
-		      		$("a[rel=tooltip].in").removeClass('in').tooltip('hide');
+		      		$("a.tag[rel=tooltip].in").removeClass('in').tooltip('hide');
 		      		$( this ).addClass('in');
 	      		}
 	      		//this.popover('show');
 	      		e.preventDefault()
 	      	})
 	      	.mouseenter(function(){
-	      		var tag = $(this).html();
-	      		$("a.tag-"+tag).fadeTo('fast',1.0);
+	      		var tag = $(this).data('tag');
+	      		$("a.tag[data-tag='"+ tag +"']").fadeTo('fast',1.0);
 	      	})
 	      	.mouseleave(function(){
-	      		var tag = $(this).html();
-	      		$("a.tag-"+tag).fadeTo('slow',0.4);
+	      		var tag = $(this).data('tag');
+	      		$("a.tag[data-tag='"+ tag +"']").fadeTo('slow',0.4);
 	      	});
 		
 			// VIDEO resizing
