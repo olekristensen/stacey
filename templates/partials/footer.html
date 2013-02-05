@@ -3,15 +3,15 @@
       <!-- Breadcrumbs -->
 	  {% if page.url != './/' %}
       <ul class="breadcrumb">
-  		<li><a href="{{ page.root_path }}">{{ page.name }}</a> <span class="divider">/</span></li>
+  		<li><a href="/">{{ page.name }}</a> <span class="divider">/</span></li>
   		{% for parent in page.parents %}
-  		<li><a href="{{ parent.url }}">{{ parent.slug | lower }}</a> <span class="divider">/</span></li>
+  		<li><a href="/{{ parent.permalink }}">{{ parent.slug | lower }}</a> <span class="divider">/</span></li>
   		{% endfor %}
-  		<li class="active">{{ page.title | lower }}</li>
+  		<li class="active">{{ page.slug | lower }}</li>
 	  </ul>
         <p class="pull-right"><a href="#">Back to top</a></p>
-      </footer>
 	  {% endif %}
+      </footer>
     </div><!-- /.container -->
 
 <!-- Le javascript
@@ -19,12 +19,12 @@
 <!-- Placed at the end of the document so the pages load faster -->
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="{{ page.root_path }}/public/docs/js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="/public/docs/js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 
 <script src="https://github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
-<script src="{{ page.root_path }}/public/docs/js/vendor/bootstrap.min.js"></script>
+<script src="/public/docs/js/vendor/bootstrap.min.js"></script>
 
-<script src="{{ page.root_path }}/public/docs/js/main.js"></script>
+<script src="/public/docs/js/main.js"></script>
 
 <script>
   !function ($) {

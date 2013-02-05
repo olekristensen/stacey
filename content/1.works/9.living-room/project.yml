@@ -36,10 +36,8 @@ appearances:
     url: http://dansehallerne.dk
 
 content: |
- Living Room is a performance of an hour with 3 dancers on stage. The projected scenography evolves during the whole performance. Most of the video scenography is made of a polygon world that is randomly generated in the beginning of each performance. During the night it is being crumbled and manipulated live by the dancers.
+ Living Room is a performance of an hour with 3 dancers on stage. The projected scenography evolves during the whole performance. Most of the video scenography is made of a polygon world that is randomly generated in the beginning of each performance. During the show it is being crumbled and manipulated live by the dancers.
 
-  For this performance I co-developed the scenographic concept and implemented some new concepts in our software. Most notable a simple method of shifting the z-axis of a plane to allow for trompe-d’oil effects of eg. holes in the floor from a movable vantage point. 
+  For this performance I co-developed the scenographic concept and implemented some new concepts in our software. Most notable a simple method of independently rotating the z-axis of a plane to allow for trompe-d’oil effects of eg. holes in the floor from a movable vantage point in the audience seating. 
   
-  The projectors have 0.7 wide angle optics and the software is qued from qLab using apple’s midi networking capabilities.
-
-  The software is open source and we are very grateful to the openFrameworks community, whose efforts form the basis of our programming work. The software for Living Room builds further on Cocoa and Objective-C wrapper for openFrameworks; ofxCocoaPlugins. We intergrate openFrameworks into a cocoa-based Mac OS X Lion application running on a mac pro seeing the dancers through a Allied Vision Technologies Manta camera, showing the openGL graphics using two video projectors, shooting diagonally onto the white dance floor.
+  The software for Living Room builds further on Cocoa and Objective-C wrapper for openFrameworks; [ofxCocoaPlugins](https://github.com/HalfdanJ/ofxCocoaPlugins). We intergrate [openFrameworks](http://openframeworks.cc) into a cocoa-based Mac OS X Lion application running on a mac pro, seeing the dancers through a Allied Vision Technologies Manta camera, showing the openGL graphics using two video projectors, shooting diagonally onto the white dance floor. The two projectors have 0.7 wide angle optics and the software is qued from qLab using apple’s midi networking capabilities.

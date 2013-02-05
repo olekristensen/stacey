@@ -18,10 +18,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-            <a class="brand" href="{{ page.root_path }}">{{ page.name }} <span class="muted">is a software artist</span></a>
+            <a class="brand" href="/">{{ page.name }} <span class="muted">is a software artist</span></a>
 			<div class="nav-collapse collapse">
     <ul class="nav">
-		<li{% if page.url == './/' %} class="active"{% endif %}><a href="{{ page.root_path }}">Home</a></li>
+		<li{% if page.permalink == '/' %} class="active"{% endif %}><a href="/">Home</a></li>
 {% for child in page.root %}
 	{% if child.children %}
 		<li class="dropdown{% if child.is_current %} active{% endif %}">
@@ -30,17 +30,17 @@
 			<li class="nav-header">{% if child.nav_featured %}{{ child.nav_featured }}{% else %}Featured {{ child.title }}{% endif %}</li>
 			{% for grandchild in sortbydate(child.children , 'date') | reverse %}
                     {% if "Featured" in grandchild.tags %}
-				<li><a href="{{ grandchild.url }}">{{ grandchild.title }}{% if child.nav_show_year %}<small class="muted"> &nbsp;{{ grandchild.date | date("Y") }}</small>{% endif %}</a></li>
+				<li><a href="/{{ grandchild.permalink }}">{{ grandchild.title }}{% if child.nav_show_year %}<small class="muted"> &nbsp;{{ grandchild.date | date("Y") }}</small>{% endif %}</a></li>
             		{% endif %}
 			{% endfor %}
                         <li class="divider"></li>
-                        <li class="nav-header">Everything</li>
-                        <li><a href="{{ child.url }}">{% if child.nav_all %}{{ child.nav_all }}{% else %}List of all {{ child.title }}{% endif %}</a></li>
+                        <li class="nav-header">{{ child.nav_all_title | default('Everything') }}</li>
+                        <li><a href="/{{ child.permalink }}">{% if child.nav_all %}{{ child.nav_all }}{% else %}List of all {{ child.title }}{% endif %}</a></li>
 			</ul>
 		</li>
 	{% else %}
 		<li{% if child.is_current %} class="active"{% endif %}>
-			<a href="{{ child.url }}">{{ child.slug | capitalize }}</a>
+			<a href="/{{ child.permalink }}">{{ child.slug | capitalize }}</a>
 	    </li>
 	{% endif %}
   {% endfor %}

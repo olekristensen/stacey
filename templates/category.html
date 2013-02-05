@@ -22,7 +22,7 @@
 			<div class="page-header">
 				<h1>{{ page.title | capitalize }}</h1>
 			</div>			
-
+			
 			  {% set formerYear = -1 %}	
 			  {% for child in sortbydate(page.children , 'date') | reverse %}
 					{% if child.date | date("Y") != formerYear %}
@@ -42,14 +42,14 @@
 				</div>
 					{% endif%}		
 					
-				<div class="span3" style="text-align:right" class="hidden-phone">
+				<div class="span3 hidden-phone" style="text-align:right">
 					<a href="{{ child.url }}">
-						<img src="{{ resize_path( child.thumb.url, '', '250', '1:1', 80) }}" style="margin:14px 0px;" class="gray-hover hidden-phone"/>
+						<img src="{{ resize_path( child.thumb.url, '', '250', '1:1', 80) }}" style="margin:14px 0px;" alt="Thumbnail" class="gray-hover hidden-phone"/>
 					</a>
 				</div>
-				<div class="span3" class="visible-phone">
+				<div class="span3 visible-phone">
 					<a href="{{ child.url }}">
-						<img src="{{ resize_path( child.thumb.url, '800', '', '3:1', 80) }}" style="margin:14px 0px;" class="gray-hover visible-phone"/>
+						<img src="{{ resize_path( child.thumb.url, '800', '', '3:1', 80) }}" style="margin:14px 0px;" alt="Thumbnail" class="gray-hover visible-phone"/>
 					</a>
 				</div>
 				<div class="span7">
@@ -62,14 +62,19 @@
 				</div>
 			</div>
 			  {% endfor %}
+
+	      <hr/>
+
+       		{{ page.content }}
 			
 			{% if page.pdf %}
 			    <h6>PDF Downloads</h6>
 			    {% for pdf in page.pdf %}
 			      <p><i class="icon-file"></i> <a href="{{ pdf.url }}">{{ pdf.name }}</a></p>
 			    {% endfor %}
+			    <hr/>
 			{% endif %}
-	      <hr/>
+
 
 			      	{% include 'partials/footer.html' %}
 

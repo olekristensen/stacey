@@ -26,15 +26,15 @@
 			  <div class="accordion-group" style="border:none;">
 			    <div id="collapseOne" class="collapse in" style="border:none;">
 			      <div class="accordion-inner" style="border:none;padding:0;margin:0;">
-					<div class="featurette" style="margin-bottom:80px;">
+					<div class="featurette img-gray-hover" style="margin-bottom:80px;">
 						{% for image in page.images %}
-					   <!-- <img src="{{ image.url }}" class="featurette-image img-rounded pull-left" alt="{{ image.title }}" style="width:300px;" > -->
+					   <img src="{{ image.url }}" class="featurette-image img-circle pull-left" alt="{{ image.title }}" style="width:300px;" > 
 						{% endfor %}
 						
 				        <h1 class="featurette-heading">{{ page.title }} <span class="muted">{{ page.subtitle }}</span></h1>
 					        {{ page.lead }}
 							<button type="button" class="btn btn-inverse" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
-							  <i class="icon-eye-open icon-white"></i> Click here to read {{ page.more }}
+							  Click here to read {{ page.more }} &raquo;
 							</button>
 				      </div>
 				  </div>
@@ -58,7 +58,7 @@
 			{% if page.pdf %}
 			    <h6>PDF Downloads</h6>
 			    {% for pdf in page.pdf %}
-			      <p><i class="icon-file"></i> <a href="{{ pdf.url }}">{{ pdf.name }}</a></p>
+			      <p><i class="icon-file"></i> <a href="{{ pdf.url }}">{{ pdf.name | lower }}</a></p>
 			    {% endfor %}
 			{% endif %}
 	      <hr/>
