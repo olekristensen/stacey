@@ -50,7 +50,7 @@ img.gray {
    -webkit-filter: grayscale(60%) contrast(80%) brightness(-0.1);
        -ms-filter: grayscale(60%) contrast(80%) brightness(-0.1);
         -o-filter: grayscale(60%) contrast(80%) brightness(-0.1);
-           filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.4\'/></filter><filter id=\'contrast\'><feColorMatrix type=\'contrast\' values=\'0.8\'/></filter><filter id=\'brightness\'><feColorMatrix type=\'brightness\' values=\'0.8\'/></filter></svg>#grayscale"); /* Firefox 10+ */
+           /* filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.4\'/></filter><filter id=\'contrast\'><feColorMatrix type=\'contrast\' values=\'0.8\'/></filter><filter id=\'brightness\'><feColorMatrix type=\'brightness\' values=\'1.0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
    -webkit-transition: -webkit-filter .5s ease-in-out;
       -moz-transition: filter .5s ease-in-out;
        -ms-transition: -ms-filter .5s ease-in-out;
@@ -63,7 +63,7 @@ img.gray-hover:hover {
    -webkit-filter:  grayscale(0%) contrast(100%) brightness(0);
        -ms-filter:  grayscale(0%) contrast(100%) brightness(0);
         -o-filter:  grayscale(0%) contrast(100%) brightness(0);
-           filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'1.0\'/></filter><filter id=\'contrast\'><feColorMatrix type=\'contrast\' values=\'1.0\'/></filter><filter id=\'brightness\'><feColorMatrix type=\'brightness\' values=\'1.0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
+           /* filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'1.0\'/></filter><filter id=\'contrast\'><feColorMatrix type=\'contrast\' values=\'1.0\'/></filter><filter id=\'brightness\'><feColorMatrix type=\'brightness\' values=\'1.0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
    -webkit-transition: -webkit-filter .5s ease-in-out;
       -moz-transition: filter .5s ease-in-out;
        -ms-transition: -ms-filter .5s ease-in-out;
@@ -84,7 +84,7 @@ a.header{
 }
 
 .page-header:hover .backarrow > *{
-    width:200px;
+    width:170px;
     margin-left:-30px;
 }
 
