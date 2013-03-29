@@ -15,7 +15,7 @@
 	   	<div class="container">
 			{% for up in page.parent %}<a href="{{up.url}}" class="header">{% endfor %}
 			<div class="page-header">
-				<h1>{% for up in page.parent %}<span class="backarrow"><small>&larr; {{ up.nav_all }} </small></span>{% endfor %}{{ page.title }} <small>{{ page.date | date("Y") }}</small></h1>
+				<h1>{% for up in page.parent %}<span class="backarrow hidden-phone"><small>&larr; {{ up.nav_all }} </small></span>{% endfor %}{{ page.title }} <small>{{ page.date | date("Y") }}</small></h1>
 			</div>
 			{% for up in page.parent %}</a>{% endfor %}
 				
@@ -53,7 +53,8 @@
 					<h5>{{ page.lead }}</h5>
 					{{ page.content }}
 					<p><small>{% if page.partners %}With: {{ page.partners }}<br />{% endif %}
-					{% if page.client %}For: {{ page.client }}{% endif %}</small></p>
+					{% if page.client %}For: {{ page.client }}<br />{% endif %}
+					{% if page.project_url%}Full credits at the <a href="{{ page.project_url }}">project website</a> {% endif %}</small></p>
 
 					<div class="visible-desktop">
 					{% if page.awards %}
@@ -149,15 +150,41 @@
 				</p>
 			{% endif %}
 			</div>
+			<hr/>
+			<p class="lead"><small>Timeline:</small></p>
+			<div style="text-align:center;">
+				<hr style="border-style: dotted;margin-top:38px;margin-bottom:-38px;" class="hidden-phone"/>
+				<p style="margin-top:26px;margin-bottom:-48px;" class="hidden-tablet hidden-phone">{{page.title}} <small>{{page.date|date("Y")}}</small></p>		
+				<ul class="pager">
+					<li class="previous{% if page.is_first %} disabled{% endif %}">
+                                	{% for sibling in page.previous_sibling %}
+						{% if page.is_first %}
+						 <a href="#">&larr; No older works</a>
+						{% else %}
+                                		<a href="{{sibling.url}}">&larr; {{sibling.title}} <small>{{ sibling.date | date("Y") }}</small></a>
+                                		{% endif %}
+					{% endfor %}
+  					</li>
+					<li class="next{% if page.is_last %} disabled{% endif %}">
+                                	{% for sibling in page.next_sibling %}
+                                                {% if page.is_last %}
+                                                 <a href="#">No newer works &rarr;</a>
+                                                {% else %}
+                                                <a href="{{sibling.url}}">{{sibling.title}} <small>{{ sibling.date | date("Y") }}</small>&rarr;</a>
+                                                {% endif %}
+                                	{% endfor %}
+					</li>
+				</ul>
+			</div>
 			{% if page.pdf %}
 				<hr/>
 			    <h6>PDF Downloads</h6>
 			    {% for pdf in page.pdf %}
 			      <p><i class="icon-file"></i> <a href="{{ pdf.url }}">{{ pdf.name }}</a></p>
 			    {% endfor %}
-			{% endif %}
-			<hr/>
-	      	{% include 'partials/footer.html' %}
+			    <hr/>
+	      	{% endif %}
+			{% include 'partials/footer.html' %}
     </body>
 </html>
 

@@ -3,6 +3,7 @@ tags: Music, Performance, Videography, 3D Stereography, Generative, Set Design, 
 partners: Deborah Vlaeymans
 client: IN-TRANSIT
 date: December 2012
+project_url: http://www.in-transit.org/2012
 materials: Videoprojectors, stereographic software, 3D glasses
 lead: DIY 3D cinema for music performance
 photocredits: Ole Kristensen
@@ -34,8 +35,12 @@ appearances:
     url: http://www.in-transit.org/2012
 
 content: |
-  A friend got obsessed with the socalled Maya Prophecy. This motivated a music performance about a possible end of the world. We travelled to Yucatan to meet the Mayas. I brought along a 3D video camera. They told us that the roumors of armageddon were highly exaggerated.
+  In january 2012 I travelled to the Yucatan peninsula with Deborah Vlaeymans. We brought along a 3D camera and a question for the Mayas: Did they believe the world would end on December 21st? The answer was fortunately no. 
   
-  Deborah Vlaeymans composed the music and performed the songs. I created a mobile 3D cinema, that could travel Copenhagen on a cargo bike.
+  Our travel and stereographic films formed the basis of a series of 3D music performances in Copenhagen. I created a mobile 3D cinema, that travelled the city on a cargo bike. 
   
-  We combined the stereoscopic illusion of depth with realtime stereographic animations.
+  The stereoscopic films were combined with realtime stereographic animations. The show ran from qLab using Quartz Composer patches to integrate playback and animations. Our DIY projection setup was RealD compatible, and the audience could use the regular glasses from the cinema.
+  
+  In our travels and the research we learned a lot, not just about how to work with stereoscopic content and the intricate details of the ancient Mayan calendar. The Mayans we met lived very modest lives in small villages among the ancient ruins. They earned next to nothing from the vast tourist groups visiting their heritage on daytrips. The tax-exempt all-inclusive hotels in Cancun made sure to insource all revenue generating activities.
+  
+  The Yucatan is a beatiful place, and the Mayan heritage is breathtaking. If you go there, please get out and about and stay at locally owned hotels, it made our trip so much more rewarding.

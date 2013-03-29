@@ -27,7 +27,34 @@
 <script src="/public/docs/js/main.js"></script>
 
 <script>
+
   !function ($) {
+  	
+	  	(function($){
+	 
+	    $.fn.shuffle = function() {
+	 
+	        var allElems = this.get(),
+	            getRandom = function(max) {
+	                return Math.floor(Math.random() * max);
+	            },
+	            shuffled = $.map(allElems, function(){
+	                var random = getRandom(allElems.length),
+	                    randEl = $(allElems[random]).clone(true)[0];
+	                allElems.splice(random, 1);
+	                return randEl;
+	           });
+	 
+	        this.each(function(i){
+	            $(this).replaceWith($(shuffled[i]));
+	        });
+	 
+	        return $(shuffled);
+	 
+	    };
+ 
+	})(jQuery);
+    
     $(function(){
 
 		// CAROUSEL
@@ -41,6 +68,11 @@
 
 		function removeLoader() {
 			$('.carousel-loader').remove();
+		}
+		
+		function shuffleElements(){
+			$('.carousel-shuffle .item:not(.active)').shuffle();
+			$('.carousel-shuffle').removeClass('carousel-shuffle');
 		}
 
 		function centerImage() {
@@ -97,6 +129,9 @@
 		$(document).ready(function() {
 			
 			$(window).on("load resize", centerImage);
+			
+			$(window).on("load", shuffleElements);
+			
 			
 			$('.carousel').on("slid", centerImage);
 			$('.carousel').on("slid", removeLoader);

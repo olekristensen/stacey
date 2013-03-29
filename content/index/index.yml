@@ -2,6 +2,7 @@ title: Home
 column1button: Selected Works
 column1url: works
 column1text: |
+ ## Works
  This site features a selection of my works. They all involve custom tailored software and range from small artefacts to complex large scale installations and interactive stage designs.
 
 column2button: Visit the lab
@@ -14,4 +15,5 @@ column2text: |
 column3button: About me
 column3url: about
 column3text: |
+ ## About
  My interest in programming stems from a fascination of creating phenomena with dynamic aestetics. Read a bit more of that story and see where it's taken me in my biography and CV.

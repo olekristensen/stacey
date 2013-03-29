@@ -27,7 +27,7 @@ void draw(){
   pushMatrix();
   translate(width/2, height/2);
   mouse.set(mouseX-(width/2), mouseY-(height/2), 0);
-  if (parentFocused) {
+  if (mouse.dist(center) < drawWidth/2 || parentFocused) {
     if(mouseInside <= 1.0) mouseInside+=0.05;
     mouseInside=min(1.0, mouseInside);
   } else {
@@ -68,3 +68,4 @@ void setParentFocused(){
 void setParentBlurred(){
   parentFocused = false;
 }
+

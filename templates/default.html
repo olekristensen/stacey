@@ -20,7 +20,7 @@
 
     	<!-- Carousel
 	    ================================================== -->
-	    <div id="myCarousel" class="carousel slide carousel-frontpage">
+	    <div id="myCarousel" class="carousel slide carousel-frontpage carousel-shuffle">
 	      <div class="carousel-inner">	
 			<div class="item active carousel-loader">
         		<div class="container" style="height:100%;">
@@ -123,7 +123,9 @@
 						</script><canvas width="200" height="400" style="position:absolute;bottom:0%;right:0%;margin-bottom:-4px;z-index:-1"></canvas>
 				    <div class="carousel-caption">
 		              <h1>Featured works</h1>
-		              <p class="lead">loading...</p>
+		              <p class="lead">Wait a bit for the slides, or ...</p>
+			      <a class="btn btn-inverse btn-large" href="/works">Browse my work selection  &raquo;</a>
+
 		            </div>
 		          </div>
 		        </div>
@@ -158,9 +160,8 @@
 
 		      <!-- Three columns of text below the carousel -->
 		      <div class="row">
-		        <div class="span4 offset1">
-		          	<!--<script type="application/processing" src="/processing/iconWork/iconWork.pde">
-		          	</script><canvas width="140" height="140"></canvas>-->
+		        <div class="span4 offset1" class="iconContainer" id="containerWork">
+				  <canvas width="140" height="140" id="iconWork" data-processing-sources="/processing/iconWork/iconWork.pde" ></canvas>
 		          {{ page.column1text }}
 		          <p><a class="btn" href="{{ page.site_root }}{{ page.column1url }}">{{ page.column1button }} &raquo;</a></p>
 		        </div>
@@ -170,9 +171,8 @@
 		          {{ page.column2text }}
 		          <p><a class="btn" href="{{ page.site_root }}{{ page.column2url }}">{{ page.column2button }} &raquo;</a></p>
 			</div> -->
-		        <div class="span4 offset2">
-		        <!--     <script type="application/processing" src="/processing/iconMe/iconMe.pde">
-                     </script><canvas width="140" height="140"></canvas> -->
+		        <div class="span4 offset2" class="iconContainer" id="containerMe">
+				  <canvas width="140" height="140" id="iconMe" data-processing-sources="/processing/iconMe/iconMe.pde" ></canvas>
 		          {{ page.column3text }}
 		          <p><a class="btn" href="{{ page.site_root }}{{ page.column3url }}">{{ page.column3button }} &raquo;</a></p>
 		        </div>
@@ -184,6 +184,38 @@
 
 	      	{% include 'partials/footer.html' %}
 
+
+			<script type="application/javascript">
+			
+			$(document).ready(function() {
+
+				function setProcessingFocus(sketch,focus){
+					var sketch = Processing.getInstanceById($(sketch).children('canvas').attr('id'));
+					if(focus){
+						sketch.setParentFocused();
+					} else {
+						sketch.setParentBlurred();
+					}
+				}
+
+				$('#containerWork').mouseenter(function(){
+					setProcessingFocus(this, true);
+				});
+
+				$('#containerWork').mouseleave(function(){
+					setProcessingFocus(this, false);
+				});
+
+				$('#containerMe').mouseenter(function(){
+					setProcessingFocus(this, true);
+				});
+
+				$('#containerMe').mouseleave(function(){
+					setProcessingFocus(this, false);
+				});
+			});
+			
+			</script>
 
     </body>
 </html>

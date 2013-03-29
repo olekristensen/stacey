@@ -33,8 +33,14 @@
 						
 				        <h1 class="featurette-heading">{{ page.title }} <span class="muted">{{ page.subtitle }}</span></h1>
 					        {{ page.lead }}
-							<button type="button" class="btn btn-inverse" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
-							  Click here to read {{ page.more }} &raquo;
+							{% if page.more_diversion %}
+							<a href="/works" class="btn btn-inverse" style="margin-bottom: 5px;">
+							  Check out my work selection &raquo;
+							</a>
+							<br />
+							{% endif %}
+							<button type="button" class="btn" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
+							  Read {{ page.more }} &raquo;
 							</button>
 				      </div>
 				  </div>
