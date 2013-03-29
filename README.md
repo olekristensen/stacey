@@ -1,3 +1,12 @@
+# ole.kristensen.name
+
+## A forked Stacey 3.0 with Bootstrap
+This is my homepage [ole.kristensen.name](http://ole.kristensen.name), that integrates the Twitter Bootstrap with the excellent Staceyapp template system.
+
+It's a databaseless portfolio for my works, feel free to get inspired and roll your own from here.
+
+Read more about Stacey below:
+
 # Stacey 3.0.0
 
 ## Overview
