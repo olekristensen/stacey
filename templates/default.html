@@ -133,8 +133,8 @@
 			{% if child.children %}
 	    		{% for child in child.children | reverse%}
 		  			{% if "Featured" in child.tags %}
-				        <div class="item">
-				          <img src="{{ resize_path( child.thumb.url, '1200', '', '', 80) }}" alt="{% if child.thumb.description %} {{ child.thumb.description }} {% endif %}" class="vertical-center gray">
+				        <div class="item img-gray-hover">
+				          <img src="{{ resize_path( child.thumb.url, '1200', '', '', 80) }}" alt="{% if child.thumb.description %} {{ child.thumb.description }} {% endif %}" class="vertical-center">
 				          <div class="container">
 				            <div class="carousel-caption">
 				              <h1>{{ child.title }}</h1>

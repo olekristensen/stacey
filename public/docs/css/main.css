@@ -47,9 +47,9 @@ img.gray-hover,
 .img-gray img,
 img.gray {
 -webkit-transform: translate3d(0,0,0);
-   -webkit-filter: grayscale(60%) contrast(80%) brightness(-0.1);
-       -ms-filter: grayscale(60%) contrast(80%) brightness(-0.1);
-        -o-filter: grayscale(60%) contrast(80%) brightness(-0.1);
+   -webkit-filter: grayscale(60%) contrast(80%) brightness(90%);
+       -ms-filter: grayscale(60%) contrast(80%) brightness(90%);
+        -o-filter: grayscale(60%) contrast(80%) brightness(90%);
            /* filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.4\'/></filter><filter id=\'contrast\'><feColorMatrix type=\'contrast\' values=\'0.8\'/></filter><filter id=\'brightness\'><feColorMatrix type=\'brightness\' values=\'1.0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
    -webkit-transition: -webkit-filter .5s ease-in-out;
       -moz-transition: filter .5s ease-in-out;
@@ -60,9 +60,9 @@ img.gray {
 
 .img-gray-hover:hover img,
 img.gray-hover:hover {
-   -webkit-filter:  grayscale(0%) contrast(100%) brightness(0);
-       -ms-filter:  grayscale(0%) contrast(100%) brightness(0);
-        -o-filter:  grayscale(0%) contrast(100%) brightness(0);
+   -webkit-filter:  grayscale(0%) contrast(100%) brightness(100%);
+       -ms-filter:  grayscale(0%) contrast(100%) brightness(100%);
+        -o-filter:  grayscale(0%) contrast(100%) brightness(100%);
            /* filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'1.0\'/></filter><filter id=\'contrast\'><feColorMatrix type=\'contrast\' values=\'1.0\'/></filter><filter id=\'brightness\'><feColorMatrix type=\'brightness\' values=\'1.0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
    -webkit-transition: -webkit-filter .5s ease-in-out;
       -moz-transition: filter .5s ease-in-out;

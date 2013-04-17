@@ -137,6 +137,33 @@
 			$('.carousel').on("slid", removeLoader);
 			
 			centerImage();
+   			// BRIGHTNESS FILTER IN SAFARI
+
+			if ( $.browser.safari ) {
+
+			  var filterDark = 'grayscale(60%) contrast(80%) brightness(-0.1)';
+			  var filterNormal = 'grayscale(0%) contrast(100%) brightness(0)';
+
+			  $('.img-gray-hover img,img.gray-hover,.img-gray img,img.gray').css('-webkit-filter', filterDark);
+
+			  $('img.gray-hover,img.gray')
+			  .mouseover(function(){
+				$(this).css('-webkit-filter', filterNormal);
+			  })
+			  .mouseout(function(){
+				$(this).css('-webkit-filter', filterDark);
+			  });
+
+			  $('.img-gray-hover,.img-gray')
+                          .mouseover(function(){
+                                $(this).find('img').css('-webkit-filter', filterNormal);
+                          })
+                          .mouseout(function(){
+                                $(this).find('img').css('-webkit-filter', filterDark);
+                          });
+
+
+			}
 
 			// TAG TOOLTIPS
 			
