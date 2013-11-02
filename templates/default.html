@@ -133,14 +133,14 @@
 			{% if child.children %}
 	    		{% for child in child.children | reverse%}
 		  			{% if "Featured" in child.tags %}
-				        <div class="item img-gray-hover">
+				        <div class="item img-gray">
 				          <img src="{{ resize_path( child.thumb.url, '1200', '', '', 80) }}" alt="{% if child.thumb.description %} {{ child.thumb.description }} {% endif %}" class="vertical-center">
 				          <div class="container">
 				            <div class="carousel-caption">
 				              <h1>{{ child.title }}</h1>
 				              <p class="lead">{{ child.date | date("Y") }}</p>
-							  <p class="lead hidden-phone">{{ child.materials | striptags }} &mdash;&nbsp;{{ child.lead | striptags }}</p>
-			              	  <a class="btn btn-inverse btn-large" href="{{ child.url }}">{% if child.html %}Watch a video {% else %}See the photos{% endif %} &raquo;</a> 
+							  <p class="lead materials">{{ child.materials | striptags }} &mdash;&nbsp;{{ child.lead | striptags }}</p>
+			              	  <a class="btn btn-large" href="{{ child.url }}">{% if child.html %}Watch a video {% else %}See the photos{% endif %} &raquo;</a> 
 				            </div>
 				          </div>
 				        </div>
@@ -149,8 +149,8 @@
 		  	{% endif %}
 		{% endfor %}
 		  </div><!-- /.carousel-inner -->
-	      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-	      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	      <a class="left carousel-control hidden-phone" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	      <a class="right carousel-control hidden-phone" href="#myCarousel" data-slide="next">&rsaquo;</a>
 	    </div><!-- /.carousel -->
 		    <!-- Marketing messaging and featurettes
 		    ================================================== -->

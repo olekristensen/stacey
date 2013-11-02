@@ -28,6 +28,22 @@
 
 <script>
 
+   			// BRIGHTNESS FILTER IN SAFARI
+
+			var oldBrightnessModel = $("<div/>").css("-webkit-filter","brightness(120%)").css("-webkit-filter")==""?true:false;
+			var browserVersion = jQuery.browser.version.substring(0,jQuery.browser.version.indexOf('.'));
+			if ( oldBrightnessModel ) {
+				$('.img-gray-hover').removeClass('img-gray-hover').addClass('img-gray-hover-old');	
+				$('img.gray-hover').removeClass('gray-hover').addClass('gray-hover-old');	
+				$('.img-gray').removeClass('img-gray').addClass('img-gray-old');	
+				$('img.gray').removeClass('gray').addClass('gray-old');	
+			} else {
+				$('.img-gray-hover').removeClass('img-gray-hover').addClass('img-gray-hover-new');	
+				$('img.gray-hover').removeClass('gray-hover').addClass('gray-hover-new');	
+				$('.img-gray').removeClass('img-gray').addClass('img-gray-new');	
+				$('img.gray').removeClass('gray').addClass('gray-new');	
+			}
+			
   !function ($) {
   	
 	  	(function($){
@@ -137,33 +153,19 @@
 			$('.carousel').on("slid", removeLoader);
 			
 			centerImage();
-   			// BRIGHTNESS FILTER IN SAFARI
-
-			if ( $.browser.safari ) {
-
-			  var filterDark = 'grayscale(60%) contrast(80%) brightness(-0.1)';
-			  var filterNormal = 'grayscale(0%) contrast(100%) brightness(0)';
-
-			  $('.img-gray-hover img,img.gray-hover,.img-gray img,img.gray').css('-webkit-filter', filterDark);
-
-			  $('img.gray-hover,img.gray')
-			  .mouseover(function(){
-				$(this).css('-webkit-filter', filterNormal);
-			  })
-			  .mouseout(function(){
-				$(this).css('-webkit-filter', filterDark);
-			  });
-
-			  $('.img-gray-hover,.img-gray')
-                          .mouseover(function(){
-                                $(this).find('img').css('-webkit-filter', filterNormal);
-                          })
-                          .mouseout(function(){
-                                $(this).find('img').css('-webkit-filter', filterDark);
-                          });
 
 
+			function hideAddressBar(){
+			  if(!window.location.hash && /iPhone|iPad|iPod/i.test(navigator.userAgent)){
+			      if(document.height < window.outerHeight){
+			          document.body.style.height = (window.outerHeight + 50) + 'px';
+      			      }
+ 			      setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
+			  }
 			}
+ 
+			window.addEventListener("load", function(){ if(!window.pageYOffset){ hideAddressBar(); } } );
+			window.addEventListener("orientationchange", hideAddressBar );
 
 			// TAG TOOLTIPS
 			

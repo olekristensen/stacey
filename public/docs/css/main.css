@@ -46,29 +46,67 @@ body, .btn {
 img.gray-hover,
 .img-gray img,
 img.gray {
--webkit-transform: translate3d(0,0,0);
-   -webkit-filter: grayscale(60%) contrast(80%) brightness(90%);
-       -ms-filter: grayscale(60%) contrast(80%) brightness(90%);
-        -o-filter: grayscale(60%) contrast(80%) brightness(90%);
-           /* filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.4\'/></filter><filter id=\'contrast\'><feColorMatrix type=\'contrast\' values=\'0.8\'/></filter><filter id=\'brightness\'><feColorMatrix type=\'brightness\' values=\'1.0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
-   -webkit-transition: -webkit-filter .5s ease-in-out;
-      -moz-transition: filter .5s ease-in-out;
-       -ms-transition: -ms-filter .5s ease-in-out;
-        -o-transition: -o-filter .5s ease-in-out;
-           transition: filter .5s ease-in-out;
+	opacity:0;
 }
 
-.img-gray-hover:hover img,
-img.gray-hover:hover {
+.img-gray-hover-new img,
+img.gray-hover-new,
+.img-gray-new img,
+img.gray-new {
+	opacity:1;
+-webkit-transform: translate3d(0,0,0);
+   -webkit-filter: grayscale(30%) contrast(80%) brightness(90%);
+       -ms-filter: grayscale(30%) contrast(80%) brightness(90%);
+        -o-filter: grayscale(30%) contrast(80%) brightness(90%);
+           /* filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.4\'/></filter><filter id=\'contrast\'><feColorMatrix type=\'contrast\' values=\'0.8\'/></filter><filter id=\'brightness\'><feColorMatrix type=\'brightness\' values=\'1.0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
+   -webkit-transition: -webkit-filter .5s ease-in-out, opacity .5s ease-in;
+      -moz-transition: filter .5s ease-in-out, opacity .5s ease-in;
+       -ms-transition: -ms-filter .5s ease-in-out, opacity .5s ease-in;
+        -o-transition: -o-filter .5s ease-in-out, opacity .5s ease-in;
+           transition: *filter .5s ease-in-out, opacity .5s ease-in;
+}
+
+.img-gray-hover-new:hover img,
+img.gray-hover-new:hover {
    -webkit-filter:  grayscale(0%) contrast(100%) brightness(100%);
        -ms-filter:  grayscale(0%) contrast(100%) brightness(100%);
         -o-filter:  grayscale(0%) contrast(100%) brightness(100%);
            /* filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'1.0\'/></filter><filter id=\'contrast\'><feColorMatrix type=\'contrast\' values=\'1.0\'/></filter><filter id=\'brightness\'><feColorMatrix type=\'brightness\' values=\'1.0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
-   -webkit-transition: -webkit-filter .5s ease-in-out;
-      -moz-transition: filter .5s ease-in-out;
-       -ms-transition: -ms-filter .5s ease-in-out;
-        -o-transition: -o-filter .5s ease-in-out;
-           transition: filter .5s ease-in-out;
+   -webkit-transition: -webkit-filter .5s ease-in-out, opacity .5s ease-in;
+      -moz-transition: filter .5s ease-in-out, opacity .5s ease-in;
+       -ms-transition: -ms-filter .5s ease-in-out, opacity .5s ease-in;
+        -o-transition: -o-filter .5s ease-in-out, opacity .5s ease-in;
+           transition: *filter .5s ease-in-out, opacity .5s ease-in;
+}
+
+.img-gray-hover-old img,
+img.gray-hover-old,
+.img-gray-old img,
+img.gray-old {
+	opacity:1;
+-webkit-transform: translate3d(0,0,0);
+   -webkit-filter: grayscale(30%) contrast(80%) brightness(-0.1);
+       -ms-filter: grayscale(30%) contrast(80%) brightness(-0.1);
+        -o-filter: grayscale(30%) contrast(80%) brightness(-0.1);
+           /* filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.4\'/></filter><filter id=\'contrast\'><feColorMatrix type=\'contrast\' values=\'0.8\'/></filter><filter id=\'brightness\'><feColorMatrix type=\'brightness\' values=\'1.0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
+   -webkit-transition: -webkit-filter .5s ease-in-out, opacity .5s ease-in;
+      -moz-transition: filter .5s ease-in-out, opacity .5s ease-in;
+       -ms-transition: -ms-filter .5s ease-in-out, opacity .5s ease-in;
+        -o-transition: -o-filter .5s ease-in-out, opacity .5s ease-in;
+           transition: *filter .5s ease-in-out, opacity .5s ease-in;
+}
+
+.img-gray-hover-old:hover img,
+img.gray-hover-old:hover {
+   -webkit-filter:  grayscale(0%) contrast(100%) brightness(0);
+       -ms-filter:  grayscale(0%) contrast(100%) brightness(0);
+        -o-filter:  grayscale(0%) contrast(100%) brightness(0);
+           /* filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'1.0\'/></filter><filter id=\'contrast\'><feColorMatrix type=\'contrast\' values=\'1.0\'/></filter><filter id=\'brightness\'><feColorMatrix type=\'brightness\' values=\'1.0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
+   -webkit-transition: -webkit-filter .5s ease-in-out, opacity .5s ease-in;
+      -moz-transition: filter .5s ease-in-out, opacity .5s ease-in;
+       -ms-transition: -ms-filter .5s ease-in-out, opacity .5s ease-in;
+        -o-transition: -o-filter .5s ease-in-out, opacity .5s ease-in;
+           transition: *filter .5s ease-in-out, opacity .5s ease-in;
 }
 
 /** HEADER ARROW
@@ -163,7 +201,100 @@ a.header .page-header:hover h1{
    margin-top: 10px;
  }
 
+/* BUTTONS */
 
+.btn {
+	background-image:none;
+	border:none;
+	box-shadow: 0 2px 0px #E6E6E6;
+}
+
+.btn:hover {
+        box-shadow:0 4px #BFBFBF;
+	position:relative;
+	top:-2px;
+}
+
+.btn:active, .btn.active {
+	-webkit-box-shadow: inset 0 2px 0px rgba(0, 0, 0, 0.15);
+	   -moz-box-shadow: inset 0 2px 0px rgba(0, 0, 0, 0.15);
+	        box-shadow: inset 0 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline {
+	background:rgba(25,25,25,0.1);
+	border: solid 2px white;
+	box-shadow:none;
+        position:inherit;
+	top:inherit;
+	color:white;
+	text-shadow:none;
+	font-weight:600;
+}
+
+.btn-outline:hover {
+	border:none;
+}
+
+.btn-primary {
+	box-shadow: 0 2px 0px #04C;
+}
+
+.btn-primary:hover {
+	box-shadow: 0 4px #002A80;
+}
+
+.btn-info {
+	box-shadow: 0 2px 0px #2F96B4;
+}
+
+.btn-info:hover {
+	box-shadow: 0 4px #1F6377;
+}
+
+.btn-success {
+	box-shadow: 0 2px 0px #51A351;
+}
+
+.btn-success:hover {
+	box-shadow: 0 4px #387038;
+}
+
+.btn-warning {
+	box-shadow: 0 2px 0px #F89406;
+}
+
+.btn-warning:hover {
+	box-shadow: 0 4px #AD6704;
+}
+
+.btn-danger {
+	box-shadow: 0 2px 0px #BD362F;
+}
+
+.btn-danger:hover {
+	box-shadow: 0 4px #802420;
+}
+
+.btn-inverse {
+	box-shadow: 0 2px 0px #000;
+}
+
+.btn-inverse:hover {
+	box-shadow: 0 4px #333;
+}
+
+.btn-link, .btn-link:hover, .btn-link:active{
+	position:inherit;
+	top:inherit;
+	box-shadow: none;
+}
+
+.btn:active {
+	box-shadow: 0 0px;   
+	position:relative;
+	top:2px;
+}
 
  /* CUSTOMIZE THE CAROUSEL
  -------------------------------------------------- */
@@ -247,19 +378,23 @@ a.header .page-header:hover h1{
    position: static;
    max-width: 550px;
    padding: 0 20px;
-   margin-top: 200px;
+   margin-top: 190px;
  }
 .carousel-frontpage .carousel-caption h1,
 .carousel-frontpage .carousel-caption .lead {
    margin: 0;
-   line-height: 1.25;
+   line-height: 1.45;
    color: #fff;
-   text-shadow: 1px 1px 2px rgba(0,0,0,.6);
-   font-size:24px;
+   text-shadow: 1px 1px 2px rgba(0,0,0,.4);
+   font-size:22px;
  }
 
 .carousel-frontpage .carousel-caption h1 {
-   font-size:36px;
+   font-size: 50px;
+   font-weight: 300;
+   line-height: 1.25;
+   text-shadow: 1px 1px 2px rgba(0,0,0,.2);
+   letter-spacing: -1px;
  }
 
 .carousel-frontpage .carousel-caption .btn {
@@ -437,12 +572,21 @@ a.header .page-header:hover h1{
    }
 
    .carousel-frontpage .carousel-caption {
-     width: 65%;
-     padding: 0 70px;
-     margin-top: 100px;
+     width: 100%;
+     padding: 0 18px;
+     margin-top: 90px;
    }
    .carousel-frontpage .carousel-caption h1 {
-     font-size: 30px;
+     font-size: 24px;
+     font-weight: normal;
+     letter-spacing: 0px;
+   }
+   .carousel-frontpage .carousel-caption lead {
+     font-size: 24px;
+   }
+   .carousel-frontpage .carousel-caption .materials {
+     font-size: 14px;
+     margin: 10px 0;
    }
 
    .marketing .span4 + .span4 {
