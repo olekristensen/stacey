@@ -15,10 +15,10 @@ Class PageData {
     if(!empty($siblings) && isset($siblings[$file_path])) {
       # previous sibling
       if(isset($keys[$keyIndexes[$file_path] - 1])) $neighbors[] = $keys[$keyIndexes[$file_path] - 1];
-      else $neighbors[] = $keys[count($keys) - 1];
+      else $neighbors[] = false;
       # next sibling
       if(isset($keys[$keyIndexes[$file_path] + 1])) $neighbors[] = $keys[$keyIndexes[$file_path] + 1];
-      else $neighbors[] = $keys[0];
+      else $neighbors[] = false;
     }
     return !empty($neighbors) ? $neighbors : array(false, false);
   }
@@ -29,7 +29,6 @@ Class PageData {
     # drop the last folder from the file path
     array_pop($split_path);
     $parent_path = array(implode('/', $split_path));
-
     return $parent_path[0] == Config::$content_folder ? array() : $parent_path;
   }
 
@@ -42,8 +41,6 @@ Class PageData {
       array_pop($split_path);
       $parents[] = implode('/', $split_path);
     }
-    # reverse array to emulate anchestor structure
-    $parents = array_reverse($parents);
 
     return (count($parents) < 1) ? array() : $parents;
   }
@@ -103,7 +100,9 @@ Class PageData {
     $split_url = explode("/", $page->url_path);
     $page->slug = $split_url[count($split_url) - 1];
     # page.page_name
-    $page->page_name = ucfirst(preg_replace('/[-_](.)/e', "' '.strtoupper('\\1')", $page->data['slug']));
+    $page->page_name = ucfirst(preg_replace_callback('/[-_](.)/', function ($matches) {
+      return ' '.strtoupper($matches[1]);
+    }, $page->data['slug']));
     # page.root_path
     $page->root_path = Helpers::relative_root_path();
     # page.thumb
@@ -138,7 +137,10 @@ Class PageData {
     # page.is_first
     $page->is_first = $page->data['index'] == 1;
 
-	  # page.cache_page
+    # page.template_name
+    $page->data['template_name'] = $page->template_name;
+
+    # page.cache_page
     $page->bypass_cache = isset($page->data['bypass_cache']) && $page->data['bypass_cache'] !== 'false' ? $page->data['bypass_cache'] : false;
 
   }
@@ -161,7 +163,7 @@ Class PageData {
     $page->siblings_and_self = Helpers::list_files($parent_path, '/^\d+?\./', true);
     # page.next_siblings / page.previous_siblings
     $index = self::get_index($page->data['siblings_and_self'], $page->file_path);
-    $page->previous_siblings = array_slice($page->data['siblings_and_self'], 0, $index, true);
+    $page->previous_siblings = array_slice($page->data['siblings_and_self'], 0, $index - 1, true);
     $page->next_siblings = array_slice($page->data['siblings_and_self'], $index, count($page->data['siblings_and_self']), true);
     # page.next_sibling / page.previous_sibling
     $neighboring_siblings = self::extract_closest_siblings($page->data['siblings_and_self'], $page->file_path);
@@ -177,6 +179,8 @@ Class PageData {
     $page->files = Helpers::list_files($page->file_path, '/(?<!thumb|_lge|_sml)\.(?!yml)([\w\d]+?)$/i', false);
     # page.images
     $page->images = Helpers::list_files($page->file_path, '/(?<!thumb|_lge|_sml)\.(gif|jpg|png|jpeg)$/i', false);
+    # page.numbered_images
+    $page->numbered_images = Helpers::list_files($page->file_path, '/^\d+[^\/]*(?<!thumb|_lge|_sml)\.(gif|jpg|png|jpeg)$/i', false);
     # page.video
     $page->video = Helpers::list_files($page->file_path, '/\.(mov|mp4|m4v)$/i', false);
 
@@ -193,7 +197,16 @@ Class PageData {
     $shared_file_path = file_exists(Config::$content_folder.'/_shared.yml') ? Config::$content_folder.'/_shared.yml' : Config::$content_folder.'/_shared.txt';
     if (file_exists($shared_file_path)) {
       return self::$shared = sfYaml::load($shared_file_path);
+    } else {
+      return array();
     }
+  }
+
+  static function preparse_text($text) {
+    $content = preg_replace_callback('/:\s*(\n)?\+{3,}([\S\s]*?)\+{3,}/', create_function('$match',
+      'return ": |\n  ".preg_replace("/\n/", "\n  ", $match[2]);'
+    ), $text);
+    return $content;
   }
 
   static function create_textfile_vars($page, $content = false) {
@@ -204,7 +217,10 @@ Class PageData {
       $content_file = sprintf('%s/%s', $page->file_path, $page->template_name);
       $content_file_path = file_exists($content_file.'.yml') ? $content_file.'.yml' : $content_file.'.txt' ;
       if (!file_exists($content_file_path)) return;
-      $vars = sfYaml::load($content_file_path);
+      # Correct formatting of fenced content
+      $content = file_get_contents($content_file_path);
+      $content = self::preparse_text($content);
+      $vars = sfYaml::load($content);
     }
 
     # include shared variables for each page
@@ -215,23 +231,31 @@ Class PageData {
     if (!$current_page_template_file) {
       $current_page_template_file = $page->template_file;
     }
-    $markdown_compatible = preg_match('/\.(xml|html?|rss|rdf|atom)$/', $current_page_template_file);
+    $markdown_compatible = preg_match('/\.(xml|html?|rss|rdf|atom|js|json)$/', $current_page_template_file);
     $relative_path = preg_replace('/^\.\//', Helpers::relative_root_path(), $page->file_path);
 
+    $vars = self::parse_vars($vars, $markdown_compatible, $relative_path);
+    foreach ($vars as $key => $value) {
+      # set a variable with a name of 'key' on the page with a value of 'value'
+      $page->$key = $value;
+    }
+  }
+
+  static function parse_vars($vars, $markdown_compatible, $relative_path) {
     foreach ($vars as $key => $value) {
       # replace the only var in your content - page.path for your inline html with images and stuff
       if (is_string($value)) $value = preg_replace('/{{\s*path\s*}}/', $relative_path . '/', $value);
 
-      # set a variable with a name of 'key' on the page with a value of 'value'
-      # if the template type is xml or html & the 'value' contains a newline character, parse it as markdown
+      # if the template type is markdown-compatible & the 'value' contains a newline character, parse it as markdown
       if (!is_string($value)) {
-        $page->$key = $value;
+        $vars[$key] = $value;
       } else if ($markdown_compatible && strpos($value, "\n") !== false) {
-        $page->$key = Markdown(trim($value));
+        $vars[$key] = Markdown(trim($value));
       } else {
-        $page->$key = trim($value);
+        $vars[$key] = trim($value);
       }
     }
+    return $vars;
   }
 
   static function html_to_xhtml(&$value) {
@@ -246,8 +270,8 @@ Class PageData {
   }
 
   static function clean_json($value) {
-    # escape inner quotes
-    return addslashes($value);
+    # escape inner double quotes
+    return preg_replace('/\"/', '\"', $value);
   }
 
   static function create($page, $content = false) {

@@ -68,6 +68,9 @@ Class Stacey {
 
   function etag_expired($cache) {
     header('Etag: "'.$cache->hash.'"');
+    # Safari incorrectly caches 304s as empty pages, so don't serve it 304s
+    if (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) return true;
+    # Check for a local cache
     if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && stripslashes($_SERVER['HTTP_IF_NONE_MATCH']) == '"'.$cache->hash.'"') {
       # local cache is still fresh, so return 304
       header("HTTP/1.0 304 Not Modified");
@@ -127,6 +130,9 @@ Class Stacey {
     $key = preg_replace(array('/\/$/', '/^\//'), '', $key);
     # store file path for this current page
     $this->route = isset($key) ? $key : 'index';
+    # TODO: Relative root path is set incorrectly (missing an extra ../)
+    # strip any trailing extensions from the url
+    $this->route = preg_replace('/[\.][\w\d]+?$/', '', $this->route);
     $file_path = Helpers::url_to_file_path($this->route);
 
     try {
