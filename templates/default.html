@@ -137,7 +137,7 @@
 				          <img src="{{ resize_path( child.thumb.url, '1200', '', '', 80) }}" alt="{% if child.thumb.description %} {{ child.thumb.description }} {% endif %}" class="vertical-center">
 				          <div class="container">
 				            <div class="carousel-caption">
-				              <h1>{{ child.title }}</h1>
+				              <h1><a href="{{ child.url }}">{{ child.title }}</a></h1>
 				              <p class="lead">{{ child.date | date("Y") }}</p>
 							  <p class="lead materials">{{ child.materials | striptags }} &mdash;&nbsp;{{ child.lead | striptags }}</p>
 			              	  <a class="btn btn-large" href="{{ child.url }}">{% if child.html %}Watch a video {% else %}See the photos{% endif %} &raquo;</a> 
