@@ -5,5 +5,5 @@ app/_cache/templates/*
 !app/_cache/templates/.gitignore
 app/_cache/images/*
 !app/_cache/images/.gitignore
-
+**/@eaDir/**
 logs
