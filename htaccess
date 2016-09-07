@@ -45,4 +45,5 @@ RedirectMatch 404 \.(txt|yml)$
 # Increase cookie security
 <IfModule php5_module>
   php_value session.cookie_httponly true
+  php_admin_value open_basedir /volume1/web/ole.kristensen.name/
 </IfModule>
