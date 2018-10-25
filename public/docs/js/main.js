@@ -167,7 +167,7 @@
 			
 			$(function() {
 			    
-			    var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed");
+			    var $allVideos = $("iframe[src^='//player.vimeo.com'], iframe[src^='//www.youtube.com'], object, embed");
 				    	
 				$allVideos.each(function() {
 				
