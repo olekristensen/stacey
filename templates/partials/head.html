@@ -22,4 +22,48 @@
  <link rel="stylesheet" href="/public/docs/css/bootstrap.min.css">
  <script type="text/javascript" src="//use.typekit.net/ofn6bfj.js"></script>
  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+ <script>
+    // Some default pre init
+    var Countly = Countly || {};
+    Countly.q = Countly.q || [];
+
+    // Provide your app key that you retrieved from Countly dashboard
+    Countly.app_key = "7cf4a510c89b4e89387510323901f04a4c1ac7eb";
+
+    // Provide your server IP or name. Use try.count.ly or us-try.count.ly 
+    // or asia-try.count.ly for EE trial server.
+    // If you use your own server, make sure you have https enabled if you use
+    // https below.
+    Countly.url = "https://countly.denfrievilje.dk";
+
+    // Start pushing function calls to queue
+    // Track sessions automatically (recommended)
+    Countly.q.push(['track_sessions']);
+
+    //track web page views automatically (recommended)
+    Countly.q.push(['track_pageview']);
+
+    // Uncomment the following line to track web heatmaps (Enterprise Edition)
+    // Countly.q.push(['track_clicks']);
+
+    // Uncomment the following line to track web scrollmaps (Enterprise Edition)
+    // Countly.q.push(['track_scrolls']);
+
+    // Load Countly script asynchronously
+    (function () {
+        var cly = document.createElement('script');
+        cly.type = 'text/javascript';
+        cly.async = true;
+        // Enter url of script here (see below for other option)
+        cly.src = 'https://countly.denfrievilje.dk/sdk/web/countly.min.js';
+        cly.onload = function () {
+            Countly.init()
+        };
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(cly, s);
+    })();
+
+ </script>
+
  <link rel="stylesheet" href="/public/docs/css/main.css">
