@@ -1,0 +1,8 @@
+page_description: A collection of ole's consultancies
+title: consultancies
+nav_all: List of consultancies
+nav_all_title: Full selection
+nav_featured: Featured consultancies
+nav_show_year: True
+content: |
+ <p class="muted">The list above contains a selection of previous consultancies.</p>
