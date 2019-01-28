@@ -48,21 +48,6 @@ I will update this post as I learn more and find limitations with this approach.
 
 For instructions on how to set up docker on your system, head over to docker.com.
 
-### Setting up the project
-
-Set up a project with the following structure:
-
-./Dockerfile
-./apache-config.conf
-./www/index.php
-
-Dockerfile:
-
-apache-config.conf:
-
-www/index.php:
-
-
 ### Building the container
 
 Once you have setup the project run:
