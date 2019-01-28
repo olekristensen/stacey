@@ -59,7 +59,9 @@ Once you have setup the project run:
 To run apache in a background process, simply start the container using the following command:
 
 `docker run -p 8080:80 -d mysite`
+
 `-p 8080:80` publishes port 80 in the container to 8080 on the host machine.
+
 `-d` detaches from the process, use docker ps and docker stop to … stop.
 
 Note: on OSX use `docker-machine ip default` to get the right IP to use (assuming default is your machine name).
@@ -67,6 +69,7 @@ Note: on OSX use `docker-machine ip default` to get the right IP to use (assumin
 Sometimes you’ll want to debug issues with the container; maybe there are PHP configuration issues or you want to view error logs. To do that you can start the container in interactive mode and then start apache manually:
 
 `docker run -i -t -p 8080:80 mysite /bin/bash`
+
 `apachectl start`
 
 ### Making changes
